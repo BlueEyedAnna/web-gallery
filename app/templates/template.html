@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}
+</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}? version = {{ ver }}">
+    {% block head %}{% endblock %}
+</head>
+
+
+<body>
+
+<header>
+    <div class="container">
+        <div class="heading clearfix">
+            <img src="/static/img/logo.png" alt="Галерея" class="logo"> {#логотип#}
+            <nav>
+                <ul class="menu">
+                    <li><a href="/index">Главная</a></li>
+                    <li><a href="/exhibitions">Выставки</a></li>
+                    <li><a href="/excursions">Экскурсии</a></li>
+                    <li><a href="/login">Войти</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="titles">
+            <h1>
+                ГАРЕЛЕЯ
+            </h1>
+            <p>Часы работы</p>
+            <p>пн-пт: 10.00-19.00</p>
+            <p>сб-вс: выходной день </p>
+        </div>
+
+        <a class="button" href="#">Узнать больше</a>
+
+    </div>
+</header>
+
+{% block body %}{% endblock %}
+
+<footer>
+    <div class="container">
+
+    </div>
+</footer>
+</body>
+
+</html>
