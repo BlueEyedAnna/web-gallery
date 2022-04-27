@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Галерея</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}? version = {{ ver }}">
+</head>
+
+
+<body>
+
+<header>
+    <div class="container">
+        <div class="heading clearfix">
+            <img src="/static/img/logo.png" alt="Галерея" class="logo"> {#логотип#}
+            <nav>
+                <ul class="menu">
+                    <li><a href="/index">Главная</a></li>
+                    <li><a href="/exhibitions">Выставки</a></li>
+                    <li><a href="/excursions">Экскурсии</a></li>
+                    <li><a href="/login">Войти</a></li>
+                </ul>
+            </nav>
+        </div>
+
+        <div class="titles">
+            <h1>
+                ГАРЕЛЕЯ
+            </h1>
+            <p>Часы работы</p>
+            <p> пн-пт: 10.00-19.00</p>
+            <p>сб-вс: выходной день </p>
+        </div>
+
+        <a class="button" href="#">Узнать больше</a>
+
+    </div>
+</header>
+
+
+<section id="second-section">
+    <div class="container">
+        <div class="title">
+            <h2>Выставки</h2>
+            <p>Какая-то подпись</p>
+        </div>
+
+        <div class="parts clearfix">
+            <div class="parts_item">
+                <img src="/static/img/2.png" alt="Картинка1">
+                <h3>Какое-то название</h3>
+                <p>Пояснение к названию пояснение к названию
+                    пояснение к названию пояснение к названию
+                    пояснение к названию пояснение к названию</p>
+            </div>
+            <div class="parts_item">
+                <img src="/static/img/2.png" alt="Картинка2">
+                <h3>Какое-то название</h3>
+                <p>Пояснение к названию пояснение к названию
+                    пояснение к названию пояснение к названию
+                    пояснение к названию пояснение к названию</p>
+            </div>
+            <div class="parts_item">
+                <img src="/static/img/2.png" alt="Картинка3">
+                <h3>Какое-то название</h3>
+                <p>Пояснение к названию пояснение к названию
+                    пояснение к названию пояснение к названию
+                    пояснение к названию пояснение к названию</p>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<section id="third-section">
+    <div class="container">
+        <div class="title">
+            <h2>Ещё что-то</h2>
+            <p>Какая-то подпись</p>
+        </div>
+
+        <div class="photos clearfix">
+            <img src="/static/img/5.jpg" alt="Фотография">
+            <img src="/static/img/5.jpg" alt="Фотография">
+            <img src="/static/img/5.jpg" alt="Фотография">
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+
+    </div>
+</section>
+
+<footer>
+    <div class="container">
+
+    </div>
+</footer>
+</body>
+
+</html>
