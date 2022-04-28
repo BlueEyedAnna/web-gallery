@@ -16,7 +16,7 @@ div {
 }
 
 header {
-    background: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.9)), url('../img/main_bg2.jpg') no-repeat center top / cover;
+    background: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.8)), url('../img/main_bg2.jpg') no-repeat center top / cover;
     /*background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(0, 0, 0, 0.5)), url(../img/main_bg2.jpg) no-repeat center top / cover;*/
     height: 100vh;
 }
@@ -27,7 +27,7 @@ header {
 }
 
 .logo {
-    margin-top: 41px;
+    margin-top: 25px;
     float: left;
     height: 50px;
 }
@@ -56,9 +56,19 @@ nav {
     font-size: 14px;
 }
 
-h1 {
-    font-size: 100px;
+#loginBtn{
     color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 14px;
+    outline: none;
+    border: 0;
+    background: transparent;
+}
+
+h1 {
+    font-size: 120px;
+    color: #EBC89A;
     text-transform: uppercase;
     text-align: left;
     margin-top: 180px;
@@ -66,7 +76,7 @@ h1 {
 }
 
 .titles p {
-    font-size: 20px;
+    font-size: 18px;
     color: #fff;
     text-transform: uppercase;
     text-align: left;
@@ -75,8 +85,8 @@ h1 {
 }
 
 .button {
-    background: #fed136;
-    color: #484543;
+    background: #008080;    /*#5F9EA0;*/
+    color: #C0C0C0;
     border-radius: 3px;
     display: block;
     width: 240px;
