@@ -120,7 +120,7 @@ h1 {
 }
 
 .parts {
-    margin-top: 50px;
+    margin-top: 40px;
 }
 
 .parts_item {
@@ -130,6 +130,7 @@ h1 {
 }
 
 .parts_item h3 {
+    margin-top: 20px;
     font-size: 18px;
     margin-bottom: 5px;
 }
@@ -145,7 +146,11 @@ h1 {
 }
 
 .parts_item:nth-child(2) {
-    margin-left: 60px;
+    margin-left: 49px;
+}
+
+.parts_item img{
+     width: 270px;
 }
 
 #second-section {
@@ -153,8 +158,8 @@ h1 {
 }
 
 #third-section {
-    background: #f7f7f7;
-    padding-bottom: 120px;
+    background: #edeffa;
+    padding-bottom: 600px;
 }
 
 .photos {
@@ -163,7 +168,7 @@ h1 {
 
 .photos img {
     float: left;
-    width: 200px;
+    width: 270px;
 }
 
 .photos img:last-child {
@@ -171,7 +176,7 @@ h1 {
 }
 
 .photos img:nth-child(2) {
-    margin-left: 170px;
+    margin-left: 60px;
 }
 
 .checkon {
