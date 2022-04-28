@@ -36,6 +36,7 @@
                     <li><a href="/excursions">Экскурсии</a></li>
                     {% if is_authenticated %}
                         <li><button href="/login" data-bs-target="#modal-2" data-bs-toggle="modal" type="button" id="loginBtn">Выйти</button></li>
+                        <li><a href="/me">Личный кабинет</a></li>
                     {% else %}
                         <li><button href="/login" data-bs-target="#modal-1" data-bs-toggle="modal" type="button" id="loginBtn">Войти</button></li>
                     {% endif %}

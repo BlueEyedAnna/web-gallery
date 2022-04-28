@@ -49,6 +49,48 @@ def excursions():
                            ver=datetime.datetime.now().timestamp())
 
 
+@app.route('/me', methods=['GET', 'POST'])
+def me():
+    if current_user.is_authenticated:
+        if request.method == 'GET':
+            return render_template(
+                'me.html',
+                ver=datetime.datetime.now().timestamp(),
+                is_authenticated=True,
+                user=current_user
+            )
+        elif request.method == 'POST':
+            update = {}
+
+            if request.files.get('avatar'):
+                update['avatar'] = str(base64.b64encode(request.files.get('avatar').read()))[2:-1]
+
+            if request.form['login']:
+                update['login'] = request.form['login']
+
+            if request.form['email']:
+                update['email'] = request.form['email']
+
+            if request.form['phone']:
+                update['phone'] = request.form['phone']
+
+            if request.form['fio']:
+                update['fio'] = request.form['fio']
+
+            if (request.form['password']
+                    and request.form['password2']
+                    and request.form['password'] == request.form['password2']):
+                update['password'] = generate_password_hash(request.form['password'])
+
+            if len(update.keys()) != 0:
+                users.update_one({'_id': current_user.id}, {'$set': update})
+
+            return redirect(url_for('me'))
+    else:
+        return redirect(url_for('index'))
+
+
+# <editor-fold desc="Auth">
 # это авторизация пользователя
 @login_manager.user_loader
 def load_user(user_id):
@@ -142,6 +184,9 @@ def registration():
         return redirect(url_for("index"))
 
 
+# </editor-fold>
+
+# <editor-fold desc="API">
 # API для проверки совпадения пароля и логина при авторизации
 class LoginUser(Resource):
     def get(self, login, password):
@@ -167,6 +212,7 @@ class CheckLogin(Resource):
 # регистрация API
 api.add_resource(LoginUser, "/login_user/<string:login>&<string:password>")
 api.add_resource(CheckLogin, "/check_login/<string:login>", "/check_login/")
+# </editor-fold>
 
 # запуск сервера
 if __name__ == '__main__':
