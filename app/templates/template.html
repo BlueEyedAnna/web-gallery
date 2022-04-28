@@ -3,14 +3,27 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>{% block title %}{% endblock %}
-</title>
+
+    <title>
+        {% block title %}
+        {% endblock %}
+    </title>
+
+    {# иконка маленькая во вкладке браузера#}
+    <link rel="shortcut icon" href="/static/img/favicon.ico" type="image/x-icon">
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}? version = {{ ver }}">
-    {% block head %}{% endblock %}
+
+    {% block head %}
+    {% endblock %}
 </head>
 
-
 <body>
+{# импорты для работы модальных окон #}
+<script type="text/javascript" src="{{ url_for('static', filename='assets/jquerymin.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='assets/bootstrap/js/bootstrap.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='assets/js/bs-init.js') }}"></script>
 
 <header>
     <div class="container">
@@ -21,7 +34,12 @@
                     <li><a href="/index">Главная</a></li>
                     <li><a href="/exhibitions">Выставки</a></li>
                     <li><a href="/excursions">Экскурсии</a></li>
-                    <li><a href="/login">Войти</a></li>
+                    {% if is_authenticated %}
+                        <li><button href="/login" data-bs-target="#modal-2" data-bs-toggle="modal" type="button" id="loginBtn">Выйти</button></li>
+                    {% else %}
+                        <li><button href="/login" data-bs-target="#modal-1" data-bs-toggle="modal" type="button" id="loginBtn">Войти</button></li>
+                    {% endif %}
+
                 </ul>
             </nav>
         </div>
@@ -47,6 +65,92 @@
 
     </div>
 </footer>
+
+{# модальное окно авторизации #}
+<div class="modal fade" role="dialog" tabindex="-1" id="modal-1">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content" style="border: none;">
+            <div class="modal-header"
+                 style="border: none;">
+                <h4 class="modal-title" id="modal_title" style="font-weight: bold;">
+                    Авторизация
+                </h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close1"></button>
+            </div>
+            <form action="/login" method="post" id="form">
+                <div class="modal-body">
+
+                    <input class="form-control" type="text" id="userLogin" name="userLogin" required
+                           style="margin-bottom: 16px;margin-top: 8px;font-weight: bold;font-size: 20px;border-width: 2px;"
+                           placeholder="Логин" autocomplete="on">
+
+                    <input class="form-control" type="password" id="userPassword" name="userPassword" required
+                           style="margin-bottom: 16px;font-weight: bold;font-size: 20px;border-width: 2px;"
+                           placeholder="Пароль" autocomplete="on">
+
+                    <div class="checkon" id="checkon">
+                        <input class="form-control" type="password" id="userPasswordCheck" name="userPasswordCheck"
+                               style="margin-bottom: 16px;font-weight: bold;font-size: 20px;border-width: 2px;"
+                               placeholder="Подтвердите пароль" autocomplete="on">
+                    </div>
+
+                    <div class="checkoff" id="checkoff">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" name="remainMe" id="checkBox">
+                            <label class="form-check-label" for="checkBox" style="margin-bottom: 16px;">
+                                Запомнить меня
+                            </label>
+                        </div>
+                    </div>
+
+                    <label class="form-label" id="check_login">
+                        <strong>
+                            Этот логин уже занят.
+                        </strong>
+                        <br>
+                    </label>
+
+                    <label class="form-label" id="is_valid">
+                        <strong>
+                            Неправильный логин или пароль.
+                        </strong>
+                        <br>
+                    </label>
+                </div>
+
+                <div class="modal-footer" style="box-shadow: 0 0 20px;border: none;">
+                    <button class="btn btn-secondary" type="button" id="reg" style="font-weight: bold;font-size: 20px;">
+                        Регистрация
+                    </button>
+
+                    <input class="btn btn-success" id="submitBtn" type="submit" value="Войти" style="font-weight: bold;font-size: 20px;"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{# модальное окно выхода #}
+<div class="modal fade" role="dialog" tabindex="-2" id="modal-2">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content" style="border: none;">
+            <div class="modal-header" style="border: none;">
+                <h4 class="modal-title" style="font-weight: bold;">
+                    Подтвердите выход
+                </h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close2"></button>
+            </div>
+            <div class="modal-footer" style="border: none;">
+                <form action="/logout" method="post" class="form-contact">
+                    <input class="btn btn-danger" type="submit" value="Выйти" style="font-weight: bold;font-size: 20px;"/>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="{{ url_for('static', filename='scripts/modal.js') }}"></script>
+
 </body>
 
 </html>
