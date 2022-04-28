@@ -1,0 +1,66 @@
+{% extends "template.html" %}
+
+{% block title %}
+    Выставки
+{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/css/Animation-Cards-1.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/css/Animation-Cards.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/fonts/ionicons.min.css') }}">
+{% endblock %}
+
+{% block body %}
+    <a id="exhibitions_count" hidden>{{ exhibitions_count }}</a>
+
+    {% for block in exhibitions %}
+        {% set block_ind = loop.index %}
+
+        <div class="row space-rows">
+            {% for exhibition in block %}
+                {% set exhibition_ind = loop.index %}
+
+                <form method="get" action="/exhibition" name="t{{ ((block_ind - 1) * 3 + exhibition_ind - 1) }}" hidden>
+                    <input type="text" name="id" value="{{ exhibition['_id'] }}">
+                </form>
+
+                <div class="col">
+                    <div class="card cards-shadown cards-hover aos-init aos-animate" data-aos=flip-left data-aos-duration="950" style="border-radius: 30px;border: none;">
+
+                        <div class="card-header" onclick="document.forms['t{{ ((block_ind - 1) * 3 + exhibition_ind - 1) }}'].submit();"
+                             style="border-radius: 30px;background-color: #292C49;">
+                            <div class="cardheader-text">
+                                Здеся инфа про exhibition
+                            </div>
+
+                            <div style="position:absolute;top: 5px;right: 5px;width: 190px; height: 190px;display: flex;margin: auto;" id="photos">
+                                {% for photo in exhibition['photos'] %}
+                                    {% set id = (((block_ind - 1) * 3 + exhibition_ind - 1) * 100 + loop.index - 1)|string %}
+                                    <img src="data:image/png;base64, {{ photo }}"
+                                         alt="slide" id="{{ id }}"
+                                         style="display: none; max-height: 100%; max-width: 100%;margin: auto; border-radius: 15px;">
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <div class="card-body">
+                            {% for i in range(exhibition['stars']) %}
+                                <span class="space"  onclick="document.forms['t{{ ((block_ind - 1) * 3 + exhibition_ind - 1) }}'].submit();">
+                                    <img src="{{ url_for('static', filename='img/star.png') }}" alt="star" width="30px"/>
+                                </span>
+                            {% endfor %}
+
+                            <p class="card-text cardbody-sub-text" onclick="document.forms['t{{ ((block_ind - 1) * 3 + exhibition_ind - 1) }}'].submit();">
+                                {{ exhibition['name'] }}
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+
+            {% endfor %}
+        </div>
+    {% endfor %}
+
+    <script type="text/javascript" src="{{ url_for('static', filename='scripts/exhibition.js') }}"></script>
+{% endblock %}

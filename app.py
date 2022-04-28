@@ -2,6 +2,7 @@ import base64
 import datetime
 import random
 
+from bson.objectid import ObjectId
 from flask_restful import Resource
 from flask import redirect, render_template, request, url_for
 from flask_login import LoginManager, current_user, login_user, logout_user, UserMixin
@@ -37,16 +38,55 @@ login_manager = LoginManager(app)
 users = db['users']
 
 
-@app.route("/exhibitions")
+@app.route('/exhibitions', methods=['GET'])
 def exhibitions():
-    return render_template("exhibitions.html",
-                           ver=datetime.datetime.now().timestamp())
+    exhibitions = list(db['exhibitions'].find())
+
+    exhibitions_count = len(exhibitions)
+
+    block_exhibitions = []
+    output_exhibitions = []
+    ind = -1
+
+    for exhibition in exhibitions:
+        ind += 1
+
+        if ind % 3 == 0:
+            if ind != 0:
+                output_exhibitions.append(block_exhibitions)
+
+            block_exhibitions = [exhibition]
+        else:
+            block_exhibitions.append(exhibition)
+
+    output_exhibitions.append(block_exhibitions)
+
+    return render_template(
+        'exhibitions.html',
+        ver=datetime.datetime.now().timestamp(),
+        is_authenticated=current_user.is_authenticated,
+        exhibitions=output_exhibitions,
+        exhibitions_count=exhibitions_count
+    )
+
+
+@app.route('/exhibition', methods=['GET'])
+def exhibition():
+    current_exhibition = db['exhibitions'].find_one({'_id': ObjectId(request.args.get('id'))})
+
+    return render_template(
+        'exhibition.html',
+        ver=datetime.datetime.now().timestamp(),
+        is_authenticated=current_user.is_authenticated,
+        exhibition=current_exhibition
+    )
 
 
 @app.route("/excursions")
 def excursions():
     return render_template("excursions.html",
-                           ver=datetime.datetime.now().timestamp())
+                           ver=datetime.datetime.now().timestamp(),
+                           is_authenticated=current_user.is_authenticated)
 
 
 @app.route('/me', methods=['GET', 'POST'])
