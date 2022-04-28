@@ -1,0 +1,98 @@
+{% extends "template.html" %}
+
+{% block title %}
+    Личный кабинет
+{% endblock %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block body %}
+    <div id="main"
+         style="margin: 20px;border-radius: 35px;border: 4px dashed var(--bs-red);padding: 30px;font-size: 20px;height: calc(100% - 120px)">
+        <form id="change" action="/me" method="post" name="change" enctype="multipart/form-data" style="display: none">
+            <p class="d-flex" style="max-width: 610px;">
+                <label class="form-label d-inline-flex flex-column" style="margin-right: 40px;">Аватар</label>
+                <input class="float-end form-control" type="file" name="avatar" accept=".jpg, .jpeg, .png"
+                       style="font-size: 20px;">
+            </p>
+            <p class="d-flex" style="max-width: 610px;">
+                <label class="form-label d-inline-flex flex-column" style="margin-right: 40px;">ФИО</label>
+                <input class="float-end form-control" type="text" name="fio" value="{{ user.fio }}"
+                       style="border-radius: 15px;font-size: 20px;">
+
+            </p>
+            <p class="d-flex" style="max-width: 610px;">
+                <label class="form-label d-inline-flex flex-column" style="margin-right: 40px;">Логин</label>
+                <input class="float-end form-control" type="text" name="login" value="{{ user.login }}"
+                       style="border-radius: 15px;font-size: 20px;">
+            </p>
+            <p class="d-flex" style="max-width: 610px;">
+                <label class="form-label d-inline-flex flex-column" style="margin-right: 40px;">Почта</label>
+                <input class="float-end form-control" type="email" name="email" value="{{ user.email }}"
+                       style="border-radius: 15px;font-size: 20px;">
+            </p>
+            <p class="d-flex" style="max-width: 610px;">
+                <label class="form-label d-inline-flex flex-column" style="margin-right: 40px;">Телефон</label>
+                <input class="float-end form-control" type="tel" name="phone" value="{{ user.phone }}"
+                       style="border-radius: 15px;font-size: 20px;">
+            </p>
+            <p class="d-flex" style="max-width: 610px;">
+                <label class="form-label d-inline-flex flex-column" style="margin-right: 40px;">Новый пароль</label>
+                <input class="float-end form-control" type="password" name="password"
+                       style="border-radius: 15px;font-size: 20px;">
+            </p>
+            <p class="d-flex" style="max-width: 610px;">
+                <label class="form-label d-inline-flex flex-column" style="margin-right: 40px;">Повторите пароль</label>
+                <input class="float-end form-control" type="password" name="password2"
+                       style="border-radius: 15px;font-size: 20px;">
+            </p>
+        </form>
+
+        <div id="info" style="display: block">
+            <p><img src="data:image/;base64, {{ user.avatar }}" alt="Аватар" id="avatar"
+                    style="width: 300px;height: 300px;border-radius: 15px;"></p>
+            <p style="max-width: 610px;"><label>ФИО: {{ user.fio }}</label></p>
+            <p style="max-width: 610px;"><label>Логин: {{ user.login }}</label></p>
+            <p style="max-width: 610px;"><label>Email: {{ user.email }}</label></p>
+            <p style="max-width: 610px;"><label>Мобильный телефон: {{ user.phone }}</label></p>
+        </div>
+
+        <button class="btn btn-primary" type="submit" form="change" id="change_btn"
+                style="font-size: 25px;font-weight: bold;border-radius: 15px;position: absolute;bottom: 40px;right: 40px;">
+            Изменить
+        </button>
+    </div>
+
+    <script type="text/javascript">
+
+        let info = document.getElementById("info");
+        let change = document.getElementById("change");
+        let change_btn = document.getElementById("change_btn");
+        let avatar = document.getElementById("avatar");
+        let main = document.getElementById("main");
+
+        change_btn.onclick = () => {
+            if (info.style.display === "block") {
+                info.style.display = "none";
+                change.style.display = "block";
+                change_btn.innerText = "Сохранить";
+                return false;
+            }
+
+            return true;
+        };
+
+        if (document.body.offsetWidth < 600) {
+            main.style.height = null;
+            main.style.minHeight = "calc(100% - 120px)";
+            document.body.style.boxShadow = "none";
+            avatar.style.height = null;
+            document.body.style.height = null;
+            change_btn.style.position = null;
+            $(".d-flex").attr("class", "");
+        }
+
+    </script>
+{% endblock %}
