@@ -106,8 +106,8 @@ def logout():
 
 
 # регистрация нового пользователя
-@app.route("/signup", methods=["POST"])
-def signup():
+@app.route("/registration", methods=["POST"])
+def registration():
     # оборачиваем ошибки, что-то может пойти не так
     try:
         # цикл по поиску нового не существующего id в системе
