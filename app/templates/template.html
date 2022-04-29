@@ -13,7 +13,7 @@
     <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="image/x-icon">
 
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/bootstrap/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}? version = {{ ver }}">
+{#    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}? version = {{ ver }}">#}
 
     {% block head %}
     {% endblock %}
@@ -45,16 +45,8 @@
             </nav>
         </div>
 
-        <div class="titles">
-            <h1>
-                ГАРЕЛЕЯ
-            </h1>
-            <p>Часы работы</p>
-            <p>пн-пт: 10.00-19.00</p>
-            <p>сб-вс: выходной день </p>
-        </div>
-
-        <a class="button" href="#">Узнать больше</a>
+        {% block headerbutton  %}
+        {% endblock %}
 
     </div>
 </header>
