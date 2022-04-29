@@ -26,10 +26,10 @@
             <div class="carousel-item active">
                 {% for photo in exhibition['photos'] %}
                     {% if loop.index == 1 %}
-                        <img class="d-block w-100" src="data:image/png;base64, {{ photo }}" alt="slide" id="ph0"
+                        <img class="d-block w-100" src=" {{ photo }}" alt="slide" id="ph0"
                              style="max-height: 100%; max-width: 100%;margin: auto; border-radius: 15px;display: block">
                     {% else %}
-                        <img class="d-block w-100" src="data:image/png;base64, {{ photo }}" alt="slide" id="ph{{ loop.index - 1 }}"
+                        <img class="d-block w-100" src="{{ photo }}" alt="slide" id="ph{{ loop.index - 1 }}"
                              style="max-height: 100%; max-width: 100%;margin: auto; border-radius: 15px;display: none !important">
                     {% endif %}
                 {% endfor %}
