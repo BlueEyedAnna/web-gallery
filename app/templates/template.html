@@ -13,6 +13,7 @@
     <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="image/x-icon">
 
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/login_forms.css') }}? version = {{ ver }}">
 {#    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}? version = {{ ver }}">#}
 
     {% block head %}
@@ -65,7 +66,7 @@
         <div class="modal-content" style="border: none;">
             <div class="modal-header"
                  style="border: none;">
-                <h4 class="modal-title" id="modal_title" style="font-weight: bold;">
+                <h4 class="modal-title" id="modal-title-in" style="font-weight: bold;">
                     Авторизация
                 </h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close1"></button>
@@ -74,16 +75,16 @@
                 <div class="modal-body">
 
                     <input class="form-control" type="text" id="userLogin" name="userLogin" required
-                           style="margin-bottom: 16px;margin-top: 8px;font-weight: bold;font-size: 20px;border-width: 2px;"
+{#                           style="margin-bottom: 16px;margin-top: 8px;font-weight: bold;font-size: 20px;border-width: 2px;"#}
                            placeholder="Логин" autocomplete="on">
 
                     <input class="form-control" type="password" id="userPassword" name="userPassword" required
-                           style="margin-bottom: 16px;font-weight: bold;font-size: 20px;border-width: 2px;"
+{#                           style="margin-bottom: 16px;font-weight: bold;font-size: 20px;border-width: 2px;"#}
                            placeholder="Пароль" autocomplete="on">
 
                     <div class="checkon" id="checkon">
                         <input class="form-control" type="password" id="userPasswordCheck" name="userPasswordCheck"
-                               style="margin-bottom: 16px;font-weight: bold;font-size: 20px;border-width: 2px;"
+{#                               style="margin-bottom: 16px;font-weight: bold;font-size: 20px;border-width: 2px;"#}
                                placeholder="Подтвердите пароль" autocomplete="on">
                     </div>
 
@@ -112,11 +113,11 @@
                 </div>
 
                 <div class="modal-footer" style="box-shadow: 0 0 20px;border: none;">
-                    <button class="btn btn-secondary" type="button" id="reg" style="font-weight: bold;font-size: 20px;">
+                    <button class="btn btn-secondary clearfix" type="button" id="reg"">
                         Регистрация
                     </button>
 
-                    <input class="btn btn-success" id="submitBtn" type="submit" value="Войти" style="font-weight: bold;font-size: 20px;"/>
+                    <input class="btn btn-success clearfix" id="submitBtn" type="submit" value="Войти" />
                 </div>
             </form>
         </div>
@@ -128,14 +129,14 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content" style="border: none;">
             <div class="modal-header" style="border: none;">
-                <h4 class="modal-title" style="font-weight: bold;">
+                <h4 class="modal-title" id="modal-title-out" style="font-weight: bold;">
                     Подтвердите выход
                 </h4>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close2"></button>
             </div>
             <div class="modal-footer" style="border: none;">
                 <form action="/logout" method="post" class="form-contact">
-                    <input class="btn btn-danger" type="submit" value="Выйти" style="font-weight: bold;font-size: 20px;"/>
+                    <input class="btn btn-danger clearfix" type="submit" value="Выйти" style="font-weight: bold;font-size: 20px;"/>
                 </form>
             </div>
         </div>

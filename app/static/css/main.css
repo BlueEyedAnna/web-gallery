@@ -179,35 +179,3 @@ h1 {
     margin-left: 60px;
 }
 
-.checkon {
-    display: none;
-}
-
-.checkoff {
-    display: block;
-}
-
-.modal-content {
-    border: none;
-}
-
-.modal-header {
-    border: none;
-}
-
-.modal-title {
-    font-weight: bold;
-    color: black;
-}
-
-.modal-footer {
-    border: none;
-}
-
-#reg {
-    color: black;
-}
-
-#checkBox {
-    margin-bottom: 16px;
-}

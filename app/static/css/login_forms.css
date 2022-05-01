@@ -1,0 +1,64 @@
+
+.checkon {
+    display: none;
+}
+
+.checkoff {
+    display: block;
+}
+
+.modal-content{
+    background: rgba(0,0,0,.7);
+    border: none;
+}
+
+.modal-header {
+    border: none;
+}
+
+.modal-header h4{
+    color: #008080;
+}
+
+.modal-title {
+    font-weight: bold;
+    color: #fff;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+#modal-title-in{
+    margin-left: 140px;
+}
+
+#modal-title-out{
+    margin-left: 90px;
+}
+
+.modal-footer {
+    border: none;
+}
+
+.btn {
+    background-color: transparent;
+    color: #fff;
+    font-weight: bold;
+    font-size: 18px;
+    text-transform: uppercase;
+    float: left;
+}
+
+#checkBox {
+    margin-bottom: 16px;
+}
+
+.form-control{
+    margin-bottom: 16px;
+    font-weight: bold;
+    font-size: 20px;
+    border-width: 2px;
+}
+
+#userLogin{
+    margin-top: 8px;
+}
