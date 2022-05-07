@@ -14,7 +14,7 @@ from app import app, db, api
 # класс пользователя со всеми его полями
 class User(UserMixin):
     def __init__(self, user):
-        # распаковываем поля дл я удобства
+        # распаковываем поля для удобства
         self.id = user['_id']
         self.login = user['login']
         self.password = user['password']

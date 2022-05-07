@@ -12,9 +12,11 @@
     {# иконка маленькая во вкладке браузера#}
     <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="image/x-icon">
 
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/bootstrap/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/login_forms.css') }}? version = {{ ver }}">
-{#    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}? version = {{ ver }}">#}
+    <link rel="stylesheet" type="text/css"
+          href="{{ url_for('static', filename='assets/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css"
+          href="{{ url_for('static', filename='css/login_forms.css') }}? version = {{ ver }}">
+    {#    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}? version = {{ ver }}">#}
 
     {% block head %}
     {% endblock %}
@@ -36,17 +38,25 @@
                     <li><a href="/exhibitions">Выставки</a></li>
                     <li><a href="/excursions">Экскурсии</a></li>
                     {% if is_authenticated %}
-                        <li><button href="/login" data-bs-target="#modal-2" data-bs-toggle="modal" type="button" id="loginBtn">Выйти</button></li>
+                        <li>
+                            <button href="/login" data-bs-target="#modal-2" data-bs-toggle="modal" type="button"
+                                    id="loginBtn">Выйти
+                            </button>
+                        </li>
                         <li><a href="/me">Личный кабинет</a></li>
                     {% else %}
-                        <li><button href="/login" data-bs-target="#modal-1" data-bs-toggle="modal" type="button" id="loginBtn">Войти</button></li>
+                        <li>
+                            <button href="/login" data-bs-target="#modal-1" data-bs-toggle="modal" type="button"
+                                    id="loginBtn">Войти
+                            </button>
+                        </li>
                     {% endif %}
 
                 </ul>
             </nav>
         </div>
 
-        {% block headerbutton  %}
+        {% block headerbutton %}
         {% endblock %}
 
     </div>
@@ -55,8 +65,21 @@
 {% block body %}{% endblock %}
 
 <footer>
-    <div class="container">
-
+    <div class="footer-info clearfix">
+        <div class="container">
+            <div class="row">
+                <div class="col" id="col-1">
+                    <h3>Контакты</h3>
+                    <p>e-mail: gareleya@mail.com</p>
+                    <p>телефон: 515-15-15</p>
+                </div>
+                <div class="col">
+                    <h3>Адрес</h3>
+                    <p>г.Казань, ул.Профсоюзная, д.181</p>
+                    <p>Ждём вас в нашей галерее!</p>
+                </div>
+            </div>
+        </div>
     </div>
 </footer>
 
@@ -75,16 +98,16 @@
                 <div class="modal-body">
 
                     <input class="form-control" type="text" id="userLogin" name="userLogin" required
-{#                           style="margin-bottom: 16px;margin-top: 8px;font-weight: bold;font-size: 20px;border-width: 2px;"#}
+                            {#                           style="margin-bottom: 16px;margin-top: 8px;font-weight: bold;font-size: 20px;border-width: 2px;"#}
                            placeholder="Логин" autocomplete="on">
 
                     <input class="form-control" type="password" id="userPassword" name="userPassword" required
-{#                           style="margin-bottom: 16px;font-weight: bold;font-size: 20px;border-width: 2px;"#}
+                            {#                           style="margin-bottom: 16px;font-weight: bold;font-size: 20px;border-width: 2px;"#}
                            placeholder="Пароль" autocomplete="on">
 
                     <div class="checkon" id="checkon">
                         <input class="form-control" type="password" id="userPasswordCheck" name="userPasswordCheck"
-{#                               style="margin-bottom: 16px;font-weight: bold;font-size: 20px;border-width: 2px;"#}
+                                {#                               style="margin-bottom: 16px;font-weight: bold;font-size: 20px;border-width: 2px;"#}
                                placeholder="Подтвердите пароль" autocomplete="on">
                     </div>
 
@@ -113,11 +136,11 @@
                 </div>
 
                 <div class="modal-footer" style="box-shadow: 0 0 20px;border: none;">
-                    <button class="btn btn-secondary clearfix" type="button" id="reg"">
+                    <button class="btn btn-secondary clearfix" type="button" id="reg">
                         Регистрация
                     </button>
 
-                    <input class="btn btn-success clearfix" id="submitBtn" type="submit" value="Войти" />
+                    <input class="btn btn-success clearfix" id="submitBtn" type="submit" value="Войти"/>
                 </div>
             </form>
         </div>
@@ -136,7 +159,8 @@
             </div>
             <div class="modal-footer" style="border: none;">
                 <form action="/logout" method="post" class="form-contact">
-                    <input class="btn btn-danger clearfix" type="submit" value="Выйти" style="font-weight: bold;font-size: 20px;"/>
+                    <input class="btn btn-danger clearfix" type="submit" value="Выйти"
+                           style="font-weight: bold;font-size: 20px;"/>
                 </form>
             </div>
         </div>
