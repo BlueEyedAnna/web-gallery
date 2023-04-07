@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+    <!--Название вкладки-->
+    <title>Админ</title>
+
+    {# иконка маленькая во вкладке браузера#}
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="image/x-icon">
+
+    <!--Стилевое оформление страницы.-->
+    <link rel="stylesheet" type="text/css"
+          href="{{ url_for('static', filename='css/admin_app.css') }}? version = {{ ver }}">
+
+    <link rel="stylesheet" type="text/css"
+          href="{{ url_for('static', filename='assets/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css"
+          href="{{ url_for('static', filename='css/login_forms.css') }}? version = {{ ver }}">
+    {#    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}? version = {{ ver }}">#}
+
+</head>
+
+<!--Основное содержание страницы-->
+<body>
+{# импорты для работы модальных окон #}
+<script type="text/javascript" src="{{ url_for('static', filename='assets/jquerymin.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='assets/bootstrap/js/bootstrap.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='assets/js/bs-init.js') }}"></script>
+
+<!--Контейнер-->
+<div class="container">
+    <!--Навигационная полоса-->
+    <div class="heading clearfix">
+        <nav>
+            <ul class="menu">
+                {% if is_authenticated %}
+                    <li><a href="#">Выставки</a></li>
+                    <li><a href="#">Экскурсии</a></li>
+                    <li>
+                        <button href="/login" data-bs-target="#modal-2" data-bs-toggle="modal" type="button"
+                                id="loginBtn">Выйти
+                        </button>
+                    </li>
+                {% else %}
+                    <li>
+                        <button href="/admin" data-bs-target="#modal-1" data-bs-toggle="modal" type="button"
+                                id="loginBtn">Войти
+                        </button>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+
+    <div class="form">
+        <form action="/login" method="post" id="form">
+            <div class="modal-body">
+
+                <input class="form-control" type="text" id="userLogin" name="userLogin" required
+                       placeholder="Логин" autocomplete="on">
+
+                <input class="form-control" type="password" id="userPassword" name="userPassword" required
+                       placeholder="Пароль" autocomplete="on">
+
+{#                <label class="form-label" id="is_valid">#}
+{#                    <strong>#}
+{#                        Неправильный логин или пароль.#}
+{#                    </strong>#}
+{#                    <br>#}
+{#                </label>#}
+            </div>
+
+            <div class="modal-footer" style="box-shadow: 0 0 20px;border: none;">
+                <input class="btn btn-success clearfix" id="submitBtn" type="submit" value="Войти"/>
+            </div>
+        </form>
+    </div>
+</div>
+
+{# модальное окно выхода #}
+<div class="modal fade" role="dialog" tabindex="-2" id="modal-2">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content" style="border: none;">
+            <div class="modal-header" style="border: none;">
+                <h4 class="modal-title" id="modal-title-out" style="font-weight: bold;">
+                    Подтвердите выход
+                </h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close2"></button>
+            </div>
+            <div class="modal-footer" style="border: none;">
+                <form action="/logout" method="post" class="form-contact">
+                    <input class="btn btn-danger clearfix" type="submit" value="Выйти"
+                           style="font-weight: bold;font-size: 20px;"/>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="{{ url_for('static', filename='scripts/modal.js') }}"></script>
+
+</body>
+</html>

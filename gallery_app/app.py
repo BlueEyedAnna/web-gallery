@@ -8,7 +8,7 @@ from flask import redirect, render_template, request, url_for
 from flask_login import LoginManager, current_user, login_user, logout_user, UserMixin
 from werkzeug.security import check_password_hash, generate_password_hash
 
-from app import app, db, api
+from gallery_app import app, db, api
 
 
 # класс пользователя со всеми его полями
@@ -30,11 +30,9 @@ class User(UserMixin):
 
 # для генерации id
 CHARS_FOR_ID = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
-
 # для авторизации
 login_manager = LoginManager(app)
-
-# коллекция пользователей (для уцпрощения обращения)
+# коллекция пользователей (для упрощения обращения)
 users = db['users']
 
 
@@ -89,6 +87,13 @@ def excursions():
                            is_authenticated=current_user.is_authenticated)
 
 
+@app.route("/admin")
+def admin():
+    return render_template("admin.html",
+                           ver=datetime.datetime.now().timestamp(),
+                           is_authenticated=current_user.is_authenticated)
+
+
 @app.route('/me', methods=['GET', 'POST'])
 def me():
     if current_user.is_authenticated:
@@ -135,7 +140,6 @@ def me():
 @login_manager.user_loader
 def load_user(user_id):
     user = users.find_one({'_id': user_id})
-
     if user:
         return User(user)
 
