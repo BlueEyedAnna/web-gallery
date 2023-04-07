@@ -87,13 +87,6 @@ def excursions():
                            is_authenticated=current_user.is_authenticated)
 
 
-@app.route("/admin")
-def admin():
-    return render_template("index.html",
-                           ver=datetime.datetime.now().timestamp(),
-                           is_authenticated=current_user.is_authenticated)
-
-
 @app.route('/me', methods=['GET', 'POST'])
 def me():
     if current_user.is_authenticated:

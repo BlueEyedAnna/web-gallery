@@ -30,13 +30,13 @@ login_manager = LoginManager(app)
 admins = db['administrators']
 
 
-@app.route('/exhib_creation', methods=['GET'])
-def exhib_creation():
+@app.route('/exhibCreation', methods=['GET'])
+def exhibCreation():
     pass
 
 
-@app.route("/excurs_creation")
-def excurs_creation():
+@app.route("/excursCreation")
+def excursCreation():
     pass
 
 
@@ -47,7 +47,6 @@ def load_user(user_id):
     user = admins.find_one({'_id': user_id})
     if user:
         return User(user)
-
     return None
 
 
@@ -82,8 +81,8 @@ def login():
     # авторизуем его
     login_user(user, remember=rm)
 
-    # перенаправляем на главную страницу
-    return redirect(url_for("index"))
+    # перенаправляем на страницу
+    return redirect(url_for("index"))  # !!!!!!Изменить
 
 
 # выход из системы
@@ -96,43 +95,6 @@ def logout():
     return redirect(url_for("index"))
 
 
-# регистрация нового пользователя
-@app.route("/registration", methods=["POST"])
-def registration():
-    # оборачиваем ошибки, что-то может пойти не так
-    try:
-        # цикл по поиску нового не существующего id в системе
-        while True:
-            # генерация нового id
-            user_id = ''.join(random.choices(CHARS_FOR_ID, k=20))
-
-            # проверка на существования такого id
-            if admins.find_one({"_id": user_id}):
-                continue
-
-            # сюда попали значит нашли новый не существующий id
-            # добавление в базу нового пользователя
-            admins.insert_one({
-                "_id": user_id,
-                "login": request.form["userLogin"],
-                "password": generate_password_hash(request.form["userPassword"]),
-                "avatar": "",
-                "email": "",
-                "fio": "",
-                "phone": ""
-            })
-
-            # сразу авторизация нового пользователя
-            login_user(User(admins.find_one({'_id': user_id})), remember=False)
-
-            # выход из бесконечного цикла
-            break
-    finally:
-        # если произошла ошибка или все хорошо в любом случае попадем сюда
-        # переадресация на главную страницу
-        return redirect(url_for("index"))
-
-
 # </editor-fold>
 
 # <editor-fold desc="API">
@@ -141,10 +103,8 @@ class LoginUser(Resource):
     def get(self, login, password):
         user = admins.find_one({"login": login})
         if user:
-            password_hash = user["password"]
-            if check_password_hash(password_hash, password):
+            if user["password"] == password:
                 return True, 200
-
         return False, 200
 
 
