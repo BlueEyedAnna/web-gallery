@@ -3,7 +3,7 @@ body {
     margin: 0; /* Отступ от краёв полотна */
     padding: 0; /* Отступ от краёв объекта */
     font-family: 'Roboto', sans-serif; /* Шрифт */
-    background: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.8)), url('../gallery_app/static/img/main_bg2.jpg') no-repeat center top / cover;
+    background: linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.8)), url('../../../gallery_app/static/img/main_bg2.jpg') no-repeat center top / cover;
     height: 100vh;
 }
 
