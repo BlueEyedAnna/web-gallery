@@ -1,0 +1,97 @@
+*{
+}
+
+body {
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	font-size: 15px;
+	font-weight: 400;
+	line-height: 1.5;
+	color: #000000;
+	background-color: #fff;
+	text-align: center;
+}
+
+.screen-dialog{
+	padding: 5%;
+}
+
+.screenwrapper{
+	height: max-content;
+	background-color: burlywood;
+	border-radius: 5px;
+}
+
+.screen_title{
+	font-size: 30px;
+	font-weight: 600;
+	color: white;
+}
+
+.screen_content{
+	background-color: aliceblue;
+	padding: 10px;
+}
+
+.left_content{
+	display: inline-block;
+	width: 50%;
+	float: left;
+}
+.right_content{
+	display: inline-block;
+	width: 50%;
+	float: right;
+}
+
+.left_button{
+	display: inline-block;
+	float: left;
+}
+
+.left_button button{
+	background: #008080;    /*#5F9EA0;*/
+	color: #fff;
+	border-radius: 3px;
+	border: none;
+	display: block;
+	width: 240px;
+	padding: 2px 2px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	margin: 0 auto;
+	text-decoration: none;
+	text-align: center;
+	text-transform: uppercase;
+	font-weight: bold;
+	font-size: 18px;
+	margin-top: 2%;
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}
+.right_button{
+	display: inline-block;
+	float: right;
+}
+
+.left_button a{
+	text-decoration: none;
+}
+
+.right_button button{
+	background: #008080;    /*#5F9EA0;*/
+	color: #C0C0C0;
+	border-radius: 3px;
+	border: none;
+	display: block;
+	width: 240px;
+	padding: 2px 2px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	margin: 0 auto;
+	text-decoration: none;
+	text-align: center;
+	text-transform: uppercase;
+	font-weight: bold;
+	font-size: 18px;
+	margin-top: 2%;
+	box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);
+}

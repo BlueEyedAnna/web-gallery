@@ -1,0 +1,30 @@
+*{
+	margin: 0;
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.levo{
+	background-color: coral;
+	float: left;
+	width: 20%;
+}
+
+.Slovo_filter{
+	font-size: x-large;
+	font-weight: 700;
+	text-align: center;
+}
+
+.title{
+	font-size: larger;
+	font-weight: 600;
+}
+
+.choice{
+	display: inline-block;
+}
+
+.pravo{
+	float: right;
+	width: 80%;
+}

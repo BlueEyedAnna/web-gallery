@@ -1,0 +1,39 @@
+{% extends "template.html" %}
+
+{% block title %}
+    Экскурсии
+{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/css/Animation-Cards-1.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/css/Animation-Cards.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/fonts/ionicons.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/anoth_page.css') }}? version = {{ ver }}">
+		<meta charset="UTF-8">
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/excursions.css') }}? version = {{ ver }}">
+{% endblock %}
+
+{% block body %}
+		<div class="screen">
+			<div class="screen-dialog">
+				<div class="screenwrapper">
+					<div class="screen_title">Hi</div>
+					<div class="screen_content">
+						<div class="left_content">
+							<p>Вы можете выбрать ручное создание экскурсии если уверены в своих силах</p></div>
+						<div class="rigth_content">
+							<p>Также, вы можете выбрать автоматическое создание экскурсии если не знаете, что вам нado</p></div>
+					</div>
+					<div class="screen_button">
+						<div class="left_button">
+							<a href="#"><button>Вручную</button></a></div>
+{#                            <a href="filter.html"><button>Вручную</button></a></div>#}
+						<div class="right_button">
+							<button disabled="disabled">ne trogat'</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		{% endblock %}
+</html>
