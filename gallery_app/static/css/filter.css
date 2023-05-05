@@ -1,30 +1,194 @@
-*{
-	margin: 0;
-	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+* {
+    margin: 0;
+    /*margin-left: 0.5%;*/
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.levo{
-	background-color: coral;
-	float: left;
-	width: 20%;
+/*bar*/
+header {
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.8)), url('../img/main_bg2.jpg') no-repeat center top / cover;
+    height: 100px;
+    margin-left: 0;
 }
 
-.Slovo_filter{
-	font-size: x-large;
-	font-weight: 700;
-	text-align: center;
+.clearfix { /*когда есть float*/
+    content: '';
+    display: table;
+    width: 100%;
+    clear: both;
+    background-color: inherit;
 }
 
-.title{
-	font-size: larger;
-	font-weight: 600;
+.heading {
+    box-sizing: border-box; /*не учитываем padding при формировании длины-высоты*/
 }
 
-.choice{
-	display: inline-block;
+.container {
+    width: 930px;
+    margin: 0 auto;
 }
 
-.pravo{
-	float: right;
-	width: 80%;
+.logo {
+    margin-top: 25px;
+    float: left;
+    height: 50px;
+}
+
+nav {
+    float: right;
+    margin-top: 45px;
+}
+
+.menu {
+    padding: 0;
+    margin: 0;
+    display: block;
+}
+
+.menu li {
+    float: left;
+    display: block;
+    margin-right: 41px;
+}
+
+.menu a {
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+#loginBtn {
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 14px;
+    outline: none;
+    border: 0;
+    background: transparent;
+}
+
+
+.footer-info {
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)), url('../img/footer_bg.jpg') no-repeat center top / cover;
+    height: 80px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: white;
+}
+
+.footer-info col {
+    float: left;
+    width: 270px;
+}
+
+/*содержимое: фильтрация и др*/
+.levo {
+
+    background-color: black;
+    float: left;
+    width: 22%;
+    color: #dbdbdb;
+}
+
+#more_1 {
+    display: none;
+}
+
+#more_2 {
+    display: none;
+}
+
+#more_3 {
+    display: none;
+}
+
+#DOHUYA {
+    display: none;
+}
+
+#myReadBtn_1 {
+    background-color: inherit;
+    border: none;
+    color: burlywood;
+    font-size: 17px;
+    padding: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+}
+
+#myReadBtn_2 {
+    background-color: inherit;
+    border: none;
+    color: burlywood;
+    font-size: 17px;
+    padding: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+}
+
+#myReadBtn_3 {
+    background-color: inherit;
+    border: none;
+    color: burlywood;
+    font-size: 17px;
+    padding: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+}
+
+#MAYNKNOPKA {
+    background-color: inherit;
+    border: none;
+    color: burlywood;
+    font-size: 17px;
+    padding: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+}
+
+.Slovo_filter {
+    color: #008080;
+    font-size: x-large;
+    font-weight: 700;
+    text-align: center;
+    padding: 5px;
+}
+
+.title {
+    font-size: 21px;
+    font-weight: 600;
+    padding-left: 5%;
+    text-decoration: underline;
+}
+
+.choice {
+    display: flex;
+    padding: 8px;
+    font-size: 17px;
+}
+
+.pravo {
+    float: right;
+    width: 77%;
+    background-color: #021314;
+
+}
+
+#photos {
+    padding: 5px 5px 5px 5px;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    margin: auto;
+    overflow: hidden;
+}
+
+.card-header {
+    border-radius: 30px;
+    background: rgba(0, 0, 0, .9);
 }

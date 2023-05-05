@@ -1,0 +1,225 @@
+body {
+    font-family: Arial, sans-serif;
+    padding: 0;
+    margin: 0;
+}
+
+.clearfix { /*когда есть float*/
+    content: '';
+    display: table;
+    width: 100%;
+    clear: both;
+}
+
+header {
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.8)), url('../img/main_bg2.jpg') no-repeat center top / cover;
+    height: 100px;
+    margin-bottom: 30px;
+}
+
+.container {
+    width: 930px;
+    margin: 0 auto;
+}
+
+.logo {
+    margin-top: 25px;
+    float: left;
+    height: 50px;
+}
+
+nav {
+    float: right;
+    margin-top: 45px;
+}
+
+.menu {
+    padding: 0;
+    margin: 0;
+    display: block;
+}
+
+.menu li {
+    float: left;
+    display: block;
+    margin-right: 41px;
+}
+
+.menu a {
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+#loginBtn {
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 14px;
+    outline: none;
+    border: 0;
+    background: transparent;
+}
+
+#photos {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 190px;
+    height: 190px;
+    display: flex;
+    margin: auto;
+}
+
+.footer-info {
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)), url('../img/footer_bg.jpg') no-repeat center top / cover;
+    height: 80px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: white;
+    margin-top:30px;
+}
+
+.footer-info col {
+    float: left;
+    width: 270px;
+}
+
+#main {
+    margin: 20px;
+    border-radius: 35px;
+    border: 4px dashed var(--bs-red);
+    padding: 30px;
+    font-size: 20px;
+    height: calc(100% - 120px)
+
+}
+
+#change_btn {
+    font-size: 25px;
+    font-weight: bold;
+    border-radius: 15px;
+    position: absolute;
+    bottom: 40px;
+    right: 40px
+}
+
+#col-1 {
+    margin-left: 30px;
+}
+
+.col h3 {
+    font-weight: bold;
+    font-size: 18px;
+    padding-bottom: 10px;
+}
+
+/*cards*/
+
+/*** Card container ***/
+.cardContainer {
+    padding-top: 20px;
+    /*   width: 22%;
+      max-width: 24%; */
+    width: 100%;
+    /* height: 300px; */
+    /*background-color: rgb(237, 239, 240);*/
+    /* This color is temporary and will be changed to neutral once it is placed inside a modal */
+    border-radius: 3px; /*** for rounded corners ***/
+}
+
+/* Temporary heading - to be changed to a dynamic heading once the modal is created */
+body h4 {
+    padding-left: 10px;
+}
+
+/*** CARD ***/
+
+/*** Adding shadows for card effect ***/
+#newCard {
+    margin: 10px;
+    box-shadow: 0 2px 4px 0 rgba(1, 1, 1, 0.2);
+    border: none;
+    border-radius: 3px; /*** for rounded corners ***/
+    /* padding: 1px 20px; */
+    background-color: rgb(255, 255, 255);
+    min-height: 18px;
+    font-size: 14px;
+    word-wrap: break-word;
+    padding: 8px 10px;
+}
+
+#newCard:hover {
+    background-color: rgb(248, 249, 249);
+}
+
+textarea {
+    outline: none; /* Removes the blue glow from around textarea */
+    /* resize: none; Removes resize handle  */
+    margin: auto;
+    /* width: 210px; */
+    width: 86%;
+    height: 50px;
+    max-height: 120px;
+    padding: 10px;
+    font-size: 14px;
+    box-shadow: 0 2px 4px 0 rgba(1, 1, 1, 0.2);
+    border: none;
+    border-radius: 3px;
+    display: block;
+    word-wrap: break-word;
+}
+
+.addCardBtn {
+    font-size: 16px;
+    font-weight: 600;
+    color: rgb(255, 255, 255);
+    padding: 8px 13px;
+    background-color: rgb(90, 172, 68);
+    box-shadow: 0 2px 4px 0 rgba(1, 1, 1, 0.2);
+    border: none;
+    border-radius: 3px; /*** for rounded corners ***/
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+button {
+    outline: none; /* Removes the blue glow from around textarea */
+    font-size: 16px;
+    font-weight: 600;
+    color: rgb(255, 255, 255);
+    padding: 8px 13px;
+    background-color: rgb(90, 172, 68);
+    box-shadow: 0 2px 4px 0 rgba(1, 1, 1, 0.2);
+    border: none;
+    border-radius: 3px; /*** for rounded corners ***/
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+#createNewCloseBtn {
+    color: rgb(131, 140, 145);
+    font-size: 20px;
+    margin-left: 10px;
+}
+
+a#addCardLink,
+a#addAnotherCardLink {
+    padding-left: 10px;
+    padding-bottom: 10px;
+    text-decoration: none;
+    color: rgb(131, 140, 145);
+}
+
+a#addAnotherCardLink {
+    display: none;
+}
+
+a#addCardLink:hover,
+a#addAnotherCardLink:hover {
+    text-decoration: underline;
+    color: rgb(51, 51, 51);
+}
+

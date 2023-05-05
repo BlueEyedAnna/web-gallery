@@ -34,6 +34,7 @@ CHARS_FOR_ID = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
 login_manager = LoginManager(app)
 # коллекция пользователей (для упрощения обращения)
 users = db['users']
+art_db = db['art']
 
 
 @app.route('/exhibitions', methods=['GET'])
@@ -85,6 +86,35 @@ def excursions():
     return render_template("excursions.html",
                            ver=datetime.datetime.now().timestamp(),
                            is_authenticated=current_user.is_authenticated)
+
+
+@app.route("/filter")
+def filter():
+    arts = list(db['art'].find())
+    arts_count = len(arts)
+
+    block = []  # 5
+    output = []
+    ind = -1
+
+    for art in arts:
+        ind += 1
+        if ind % 2 == 0:
+            if ind != 0:
+                output.append(block)
+            block = [art]
+        else:
+            block.append(art)
+
+    output.append(block)
+
+    return render_template(
+        "filter.html",
+        ver=datetime.datetime.now().timestamp(),
+        is_authenticated=current_user.is_authenticated,
+        arts=output,
+        arts_count=arts_count
+    )
 
 
 @app.route('/me', methods=['GET', 'POST'])

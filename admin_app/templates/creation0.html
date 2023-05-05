@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>
+        Добавление
+    </title>
+
+    {# иконка маленькая во вкладке браузера#}
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="image/x-icon">
+
+    <link rel="stylesheet" type="text/css"
+          href="{{ url_for('static', filename='assets/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css"
+          href="{{ url_for('static', filename='css/login_forms.css') }}? version = {{ ver }}">
+    <link rel="stylesheet" type="text/css"
+          href="{{ url_for('static', filename='css/creation.css') }}? version = {{ ver }}">
+
+</head>
+
+<body>
+<script type="text/javascript" src="{{ url_for('static', filename='assets/jquerymin.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='assets/bootstrap/js/bootstrap.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='assets/js/bs-init.js') }}"></script>
+
+<header>
+    <div class="container">
+        <div class="heading clearfix">
+            <img src="/static/img/logo.png" alt="Галерея" class="logo"> {#логотип#}
+            <nav>
+                <ul class="menu">
+                    {% if is_authenticated %}
+                        <li>
+                            <button href="/login" data-bs-target="#modal-2" data-bs-toggle="modal" type="button"
+                                    id="loginBtn">Выйти
+                            </button>
+                        </li>
+                    {% else %}
+                        <li>
+                            <button href="/login" data-bs-target="#modal-1" data-bs-toggle="modal" type="button"
+                                    id="loginBtn">Войти
+                            </button>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<div id="main">
+    <form id="change" action="/creation" method="post" name="change" enctype="multipart/form-data"
+          style="display: none">
+
+        # Выбор: выставку или экскурсию
+
+        <p class="d-flex" style="max-width: 610px;">
+            <label class="form-label d-inline-flex flex-column" style="margin-right: 40px;">Название</label>
+            <input class="float-end form-control" type="text" name="name"
+                   style="border-radius: 15px;font-size: 20px;">
+
+        </p>
+        <p class="d-flex" style="max-width: 610px;">
+            <label class="form-label d-inline-flex flex-column" style="margin-right: 40px;">Описание</label>
+            <input class="float-end form-control" type="text" name="about"
+                   style="border-radius: 15px;font-size: 20px;">
+        </p>
+
+        <p class="d-flex" style="max-width: 610px;">
+            <label class="form-label d-inline-flex flex-column" style="margin-right: 40px;">Фотографии</label>
+            <input class="float-end form-control" type="file" name="photos" accept=".jpg, .jpeg, .png"
+                   style="font-size: 20px;">
+        </p>
+    </form>
+
+    <div class="buttons">
+        <div class="parts clearfix">
+            <div class="parts_item">
+                <button class="btn btn-primary" type="submit" form="change" id="add_btn">
+                    Добавить
+                </button>
+            </div>
+            <div class="parts_item">
+                <button class="btn btn-primary" type="submit" form="change" id="change_btn">
+                    Изменить
+                </button>
+            </div>
+            <div class="parts_item">
+                <button class="btn btn-primary" type="submit" form="change" id="delete_btn">
+                    Удалить
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+{#<script type="text/javascript">#}
+{#    let info = document.getElementById("info");#}
+{#    let change = document.getElementById("change");#}
+{#    let change_btn = document.getElementById("change_btn");#}
+{#    let photos = document.getElementById("photos");#}
+{#    let main = document.getElementById("main");#}
+{##}
+{#    change_btn.onclick = () => {#}
+        {#if (info.style.display === "block") {#}
+            {#info.style.display = "none";#}
+            {#change.style.display = "block";#}
+{#            change_btn.innerText = "Сохранить";#}
+        {#    return false;#}
+        {#ff#}
+{##}
+{#        return true;#}
+{#    };#}
+{##}
+{#    if (document.body.offsetWidth < 600) {#}
+{#        main.style.height = null;#}
+{#        main.style.minHeight = "calc(100% - 120px)";#}
+{#        document.body.style.boxShadow = "none";#}
+{#        avatar.style.height = null;#}
+{#        document.body.style.height = null;#}
+{#        change_btn.style.position = null;#}
+{#        $(".d-flex").attr("class", "");#}
+{#    }#}
+{##}
+{#</script>#}
+
+<footer>
+    <div class="footer-info clearfix">
+        <div class="container">
+            <div class="row">
+                <div class="col" id="col-1">
+                    <h3>Контакты</h3>
+                    <p>e-mail: gareleya@mail.com</p>
+                    <p>телефон: 515-15-15</p>
+                </div>
+                <div class="col">
+                    <h3>Адрес</h3>
+                    <p>г.Казань, ул.Профсоюзная, д.181</p>
+                    <p>Ждём вас в нашей галерее!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+{# модальное окно выхода #}
+<div class="modal fade" role="dialog" tabindex="-2" id="modal-2">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content" style="border: none;">
+            <div class="modal-header" style="border: none;">
+                <h4 class="modal-title" id="modal-title-out" style="font-weight: bold;">
+                    Подтвердите выход
+                </h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close2"></button>
+            </div>
+            <div class="modal-footer" style="border: none;">
+                <form action="/logout" method="post" class="form-contact">
+                    <input class="btn btn-danger clearfix" type="submit" value="Выйти"
+                           style="font-weight: bold;font-size: 20px;"/>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="{{ url_for('static', filename='scripts/modal.js') }}"></script>
+
+</body>
+
+</html>

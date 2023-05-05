@@ -17,7 +17,6 @@
           href="{{ url_for('static', filename='assets/bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" type="text/css"
           href="{{ url_for('static', filename='css/login_forms.css') }}? version = {{ ver }}">
-    {#    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css') }}? version = {{ ver }}">#}
 
 </head>
 
@@ -35,8 +34,6 @@
         <nav>
             <ul class="menu">
                 {% if is_authenticated %}
-                    <li><a href="#">Выставки</a></li>
-                    <li><a href="#">Экскурсии</a></li>
                     <li>
                         <button href="/login" data-bs-target="#modal-2" data-bs-toggle="modal" type="button"
                                 id="loginBtn">Выйти

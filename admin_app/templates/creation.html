@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>
+        Добавление
+    </title>
+
+    {# иконка маленькая во вкладке браузера#}
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="image/x-icon">
+
+    <link rel="stylesheet" type="text/css"
+          href="{{ url_for('static', filename='assets/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css"
+          href="{{ url_for('static', filename='css/login_forms.css') }}? version = {{ ver }}">
+    <link rel="stylesheet" type="text/css"
+          href="{{ url_for('static', filename='css/creation.css') }}? version = {{ ver }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/assets/css/Animation-Cards.css') }}">
+
+</head>
+
+<body>
+<script type="text/javascript" src="{{ url_for('static', filename='assets/jquerymin.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='assets/bootstrap/js/bootstrap.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='assets/js/bs-init.js') }}"></script>
+
+<header>
+    <div class="container">
+        <div class="heading clearfix">
+            <img src="/static/img/logo.png" alt="Галерея" class="logo"> {#логотип#}
+            <nav>
+                <ul class="menu">
+                    {% if is_authenticated %}
+                        <li>
+                            <button href="/login" data-bs-target="#modal-2" data-bs-toggle="modal" type="button"
+                                    id="loginBtn">Выйти
+                            </button>
+                        </li>
+                    {% else %}
+                        <li>
+                            <button href="/login" data-bs-target="#modal-1" data-bs-toggle="modal" type="button"
+                                    id="loginBtn">Войти
+                            </button>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<div class="actual_exhibitions">
+    <h4>Актуальные выставки</h4>
+
+    <a id="exhibitions_count" hidden>{{ exhibitions_count }}</a>
+
+    {% for block in exhibitions %}
+        {% set block_ind = loop.index %}
+
+        <div class="row space-rows">
+            {% for exhibition in block %}
+                {% set exhibition_ind = loop.index %}
+
+                <form method="get" action="#" name="t{{ ((block_ind - 1) * 3 + exhibition_ind - 1) }}" hidden>
+                    <input type="text" name="id" value="{{ exhibition['_id'] }}">
+                </form>
+
+                <div class="col">
+                    <div class="card cards-shadown cards-hover aos-init aos-animate" data-aos=flip-left
+                         data-aos-duration="950" style="border-radius: 30px;border: none;">
+
+                        <div class="card-header"
+                             onclick="document.forms['t{{ ((block_ind - 1) * 3 + exhibition_ind - 1) }}'].submit();">
+                            <div class="cardheader-text">
+                                {{ exhibition['about'] }}
+                            </div>
+
+                            <div style="position:absolute;top: 5px;right: 5px;width: 190px; height: 190px;display: flex;margin: auto;"
+                                 id="photos">
+                                {% for photo in exhibition['photos'] %}
+                                    {% set id = (((block_ind - 1) * 3 + exhibition_ind - 1) * 100 + loop.index - 1)|string %}
+                                    <img src="{{ photo }}"
+                                         alt="slide" id="{{ id }}"
+                                         style="display: none; max-height: 100%; max-width: 100%;margin: auto; border-radius: 15px;">
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <div class="card-body">
+                            <p class="card-text cardbody-sub-text"
+                               onclick="document.forms['t{{ ((block_ind - 1) * 3 + exhibition_ind - 1) }}'].submit();">
+                                {{ exhibition['name'] }}
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+
+            {% endfor %}
+        </div>
+    {% endfor %}
+
+    <script type="text/javascript" src="{{ url_for('static', filename='scripts/exhibition.js') }}"></script>
+</div>
+
+<div class="cardContainer">
+    <div id="createCard"></div>
+    <div id="inputField"></div>
+    <form id="change" action="/creation" method="post" name="change" enctype="multipart/form-data"
+          style="display: none">
+
+        # Выбор: выставку или экскурсию
+
+        <p class="d-flex" style="max-width: 610px;">
+            <label class="form-label d-inline-flex flex-column" style="margin-right: 40px;">Название</label>
+            <input class="float-end form-control" type="text" name="name"
+                   style="border-radius: 15px;font-size: 20px;">
+
+        </p>
+        <p class="d-flex" style="max-width: 610px;">
+            <label class="form-label d-inline-flex flex-column" style="margin-right: 40px;">Описание</label>
+            <input class="float-end form-control" type="text" name="about"
+                   style="border-radius: 15px;font-size: 20px;">
+        </p>
+
+        <p class="d-flex" style="max-width: 610px;">
+            <label class="form-label d-inline-flex flex-column" style="margin-right: 40px;">Фотографии</label>
+            <input class="float-end form-control" type="file" name="photos" accept=".jpg, .jpeg, .png"
+                   style="font-size: 20px;">
+        </p>
+    </form>
+    <!--AddCardLink - when clicked it adds an input field, and the buttons for adding a card and closing the input field. -->
+    <a id="addCardLink" href="#" onclick="displayInputField(); hideButton('addCardLink');"><i class="fas fa-plus"></i>
+        Добавить выставку</a>
+    <!--AddAnotherCardLink - when clicked should perform the same as AddCardLink except that it is hidden at first and is shown only when the close button is clicked. -->
+    <a id="addAnotherCardLink" href="#" onclick="displayInputField(); hideButton('addAnotherCardLink');"><i
+            class="fas fa-plus"></i> Add another Card</a>
+</div>
+
+<!-- Link to JavaScript -->
+<script type="text/javascript" src="{{ url_for('static', filename='scripts/cards_changing.js') }}"></script>
+</body>
+
+
+<footer>
+    <div class="footer-info clearfix">
+        <div class="container">
+            <div class="row">
+                <div class="col" id="col-1">
+                    <h3>Контакты</h3>
+                    <p>e-mail: gareleya@mail.com</p>
+                    <p>телефон: 515-15-15</p>
+                </div>
+                <div class="col">
+                    <h3>Адрес</h3>
+                    <p>г.Казань, ул.Профсоюзная, д.181</p>
+                    <p>Ждём вас в нашей галерее!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+{# модальное окно выхода #}
+<div class="modal fade" role="dialog" tabindex="-2" id="modal-2">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content" style="border: none;">
+            <div class="modal-header" style="border: none;">
+                <h4 class="modal-title" id="modal-title-out" style="font-weight: bold;">
+                    Подтвердите выход
+                </h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close2"></button>
+            </div>
+            <div class="modal-footer" style="border: none;">
+                <form action="/logout" method="post" class="form-contact">
+                    <input class="btn btn-danger clearfix" type="submit" value="Выйти"
+                           style="font-weight: bold;font-size: 20px;"/>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="{{ url_for('static', filename='scripts/modal.js') }}"></script>
+
+</body>
+
+</html>

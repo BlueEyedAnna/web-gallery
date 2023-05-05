@@ -1,6 +1,6 @@
 .card-header {
   height: 200px;
-  background-color: orange;
+  background-color: black;
 }
 
 #download-icon {
@@ -53,6 +53,6 @@
 }
 
 .card-header:first-child:hover {
-  background-color: #ffb366;
+  background-color: #008080;
 }
 

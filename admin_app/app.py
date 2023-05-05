@@ -27,24 +27,78 @@ class User(UserMixin):
 # для авторизации
 login_manager = LoginManager(app)
 # коллекция пользователей (для упрощения обращения)
-admins = db['administrators']
+admins_db = db['administrators']
+exhibitions_db = db['exhibitions']
 
 
-@app.route('/exhibCreation', methods=['GET'])
-def exhibCreation():
-    pass
+def change_exhib_list():
+    print("Ok")
 
 
-@app.route("/excursCreation")
-def excursCreation():
-    pass
+@app.route('/creation', methods=['GET', 'POST'])
+def creation():
+    if current_user.is_authenticated:
+        if request.method == 'GET':
+            exhibitions = list(db['exhibitions'].find())
+
+            exhibitions_count = len(exhibitions)
+
+            block_exhibitions = []
+            output_exhibitions = []
+            ind = -1
+
+            for exhibition in exhibitions:
+                ind += 1
+
+                if ind % 2 == 0:
+                    if ind != 0:
+                        output_exhibitions.append(block_exhibitions)
+
+                    block_exhibitions = [exhibition]
+                else:
+                    block_exhibitions.append(exhibition)
+
+            output_exhibitions.append(block_exhibitions)
+
+            return render_template(
+                "creation.html",
+                ver=datetime.datetime.now().timestamp(),
+                is_authenticated=True,
+                exhibitions=output_exhibitions,
+                exhibitions_count=exhibitions_count
+            )
+        elif request.method == 'POST':
+            update = {}
+            # название выставки
+            if request.form['name']:
+                update['name'] = request.form['name']
+
+            # рейтинг (1, 2 или 3 звезды)
+            # if request.form['stars']:
+            #     update['stars'] = request.form['stars']
+
+            # поле "о чём" (про выставку)
+            if request.form['about']:
+                update['about'] = request.form['about']
+            # фотографии (несколько)
+            if request.files.get('photos'):
+                update['photos'] = str(base64.b64encode(request.files.get('photos').read()))[2:-1]
+
+            if len(update.keys()) != 0:
+                exhibitions_db.update_one({'_id': current_user.id}, {'$set': update})
+
+            return redirect(url_for('creation'))  # ИЗМЕНИТЬ??
+    else:
+        return redirect(url_for('index'))
 
 
 # <editor-fold desc="Auth">
+
+
 # это авторизация пользователя
 @login_manager.user_loader
 def load_user(user_id):
-    user = admins.find_one({'_id': user_id})
+    user = admins_db.find_one({'_id': user_id})
     if user:
         return User(user)
     return None
@@ -76,13 +130,13 @@ def login():
     rm = True if request.form.get("remainMe") else False
 
     # находим пользователя в базе по логину, который пытается авторизоваться
-    user = User(admins.find_one({'login': request.form.get('userLogin')}))
+    user = User(admins_db.find_one({'login': request.form.get('userLogin')}))
 
     # авторизуем его
     login_user(user, remember=rm)
 
-    # перенаправляем на страницу
-    return redirect(url_for("index"))  # !!!!!!Изменить
+    # перенаправляем на страницу добавления выставок
+    return redirect(url_for("creation"))  # !!!!!!Изменить
 
 
 # выход из системы
@@ -101,7 +155,7 @@ def logout():
 # API для проверки совпадения пароля и логина при авторизации
 class LoginUser(Resource):
     def get(self, login, password):
-        user = admins.find_one({"login": login})
+        user = admins_db.find_one({"login": login})
         if user:
             if user["password"] == password:
                 return True, 200
@@ -113,7 +167,7 @@ class CheckLogin(Resource):
     def get(self, login=''):
         if login == '':
             return True, 200
-        if not admins.find_one({'login': login}):
+        if not admins_db.find_one({'login': login}):
             return False, 200
         return True, 200
 
