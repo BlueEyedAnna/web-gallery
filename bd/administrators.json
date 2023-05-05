@@ -1,0 +1,17 @@
+[{
+  "_id": "ADMIN1",
+  "login": "gallery_admin1",
+  "password": "A1password"
+},{
+  "_id": "ADMIN2",
+  "login": "gallery_admin2",
+  "password": "A2password"
+},{
+  "_id": "ADMIN3",
+  "login": "gallery_admin3",
+  "password": "A3password"
+},{
+  "_id": "admin_check",
+  "login": "admin",
+  "password": "admin"
+}]

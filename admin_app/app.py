@@ -19,7 +19,7 @@ class User(UserMixin):
         self.login = user['login']
         self.password = user['password']
 
-    # метод получени id (нужен для работы фласка)
+    # метод получения id (нужен для работы фласка)
     def get_id(self):
         return self.id
 
