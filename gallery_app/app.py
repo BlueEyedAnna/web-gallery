@@ -99,10 +99,13 @@ def filter():
 
     for art in arts:
         ind += 1
+
         if ind % 2 == 0:
             if ind != 0:
                 output.append(block)
+
             block = [art]
+
         else:
             block.append(art)
 
