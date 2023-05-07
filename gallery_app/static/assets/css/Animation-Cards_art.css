@@ -1,6 +1,8 @@
 .card-header {
   height: 400px;
-  background-color: inherit;
+  /*background-color: #b79e79;*/
+  /*background-color: #9aafc5;*/
+  background-color: #90702E;
   display: inline-block;
 }
 
@@ -55,6 +57,7 @@
 }
 
 .card-header:first-child:hover {
-  background-color: #ffb366;
+  /*background-color: #faebd7;*/
+  background-color: #907948;
 }
 
