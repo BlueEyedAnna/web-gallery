@@ -8,78 +8,80 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css"
           href="{{ url_for('static', filename='css/filter.css') }}? version = {{ ver }}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/css/Animation-Cards_art.css') }}">
+    <link rel="stylesheet" type="text/css"
+          href="{{ url_for('static', filename='assets/css/Animation-Cards_art.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/fonts/ionicons.min.css') }}">
 
 {% endblock %}
 
 {% block body %}
-    <div class="levo">
-        <div class="Slovo_filter">
-            ФИЛЬТР
-        </div>
-        <div class="block">
-            <div class="bl_title">
-                <span class="title">Эпоха</span>
+    <div class="filter_body">
+        <div class="levo">
+            <div class="Slovo_filter">
+                ФИЛЬТР
             </div>
-            <div class="bl_filter">
-                <div>
-                    <div class="choice">
-                        <label itemindex="0" class="barokko">
-                            <div class="x7-a0">
-                                <input type="checkbox" name="" class="x7-a2">
-                                <span class="em4 me4 m4e em7 tsBodyL e3o eo3">
+            <div class="block">
+                <div class="bl_title">
+                    <span class="title">Эпоха</span>
+                </div>
+                <div class="bl_filter">
+                    <div>
+                        <div class="choice">
+                            <label itemindex="0" class="barokko">
+                                <div class="x7-a0">
+                                    <input type="checkbox" name="" class="x7-a2">
+                                    <span class="em4 me4 m4e em7 tsBodyL e3o eo3">
                                 <span>Барокко</span>
                             </span>
-                            </div>
-                        </label>
-                    </div>
-                    <div class="choice">
-                        <label sectionindex="0" itemindex="1" class="">
-                            <div class="aa1-a o2e">
-                                <input type="checkbox" name="" class="x7-a2">
-                                <span class="em4 me4 m4e em7 tsBodyL e3o eo3">
+                                </div>
+                            </label>
+                        </div>
+                        <div class="choice">
+                            <label sectionindex="0" itemindex="1" class="">
+                                <div class="aa1-a o2e">
+                                    <input type="checkbox" name="" class="x7-a2">
+                                    <span class="em4 me4 m4e em7 tsBodyL e3o eo3">
                                     <span>Высокое возрождение</span>
                                 </span>
-                            </div>
-                        </label>
-                    </div>
-                    <div class="choice">
-                        <label sectionindex="0" itemindex="2" class="x7-a x7-a3">
-                            <div class="aa1-a o2e">
-                                <input type="checkbox" name="" class="x7-a2">
-                                <span class="em4 me4 m4e em7 tsBodyL e3o eo3">
+                                </div>
+                            </label>
+                        </div>
+                        <div class="choice">
+                            <label sectionindex="0" itemindex="2" class="x7-a x7-a3">
+                                <div class="aa1-a o2e">
+                                    <input type="checkbox" name="" class="x7-a2">
+                                    <span class="em4 me4 m4e em7 tsBodyL e3o eo3">
                                     <span>Золотой век Голландской живописи</span>
                                 </span>
-                            </div>
-                        </label>
-                    </div>
-                    <div class="choice">
-                        <label sectionindex="0" itemindex="3" class="x7-a x7-a3">
-                            <div class="x7-a0">
-                                <div class="aa1-a o2e">
-                                    <input type="checkbox" name="" class="x7-a2">
-                                    <span class="em4 me4 m4e em7 tsBodyL e3o eo3">
+                                </div>
+                            </label>
+                        </div>
+                        <div class="choice">
+                            <label sectionindex="0" itemindex="3" class="x7-a x7-a3">
+                                <div class="x7-a0">
+                                    <div class="aa1-a o2e">
+                                        <input type="checkbox" name="" class="x7-a2">
+                                        <span class="em4 me4 m4e em7 tsBodyL e3o eo3">
                                     <span>Клуазонизм</span>
                                 </span>
+                                    </div>
                                 </div>
-                            </div>
-                        </label>
-                    </div>
-                    <div class="choice">
-                        <label sectionindex="0" itemindex="4" class="x7-a x7-a3">
-                            <div class="x7-a0">
-                                <div class="aa1-a o2e">
-                                    <input type="checkbox" name="" class="x7-a2">
-                                    <span class="em4 me4 m4e em7 tsBodyL e3o eo3">
+                            </label>
+                        </div>
+                        <div class="choice">
+                            <label sectionindex="0" itemindex="4" class="x7-a x7-a3">
+                                <div class="x7-a0">
+                                    <div class="aa1-a o2e">
+                                        <input type="checkbox" name="" class="x7-a2">
+                                        <span class="em4 me4 m4e em7 tsBodyL e3o eo3">
                                     <span>Кубизм</span>
                                 </span>
+                                    </div>
                                 </div>
-                            </div>
-                        </label>
-                    </div>
-                    <span id="dots_1"></span>
-                    <span id="more_1">
+                            </label>
+                        </div>
+                        <span id="dots_1"></span>
+                        <span id="more_1">
                 <div class="choice">
                     <label sectionindex="0" itemindex="5" class="x7-a x7-a3">
                         <div class="x7-a0">
@@ -213,95 +215,95 @@
                     </label>
                 </div>
                 </span>
-                    <button onclick="myFunction_1()" id="myReadBtn_1">Показать больше</button>
-                    <script>
-                        function myFunction_1() {
-                            var dots_1 = document.getElementById("dots_1");
-                            var moreText_1 = document.getElementById("more_1");
-                            var btnText_1 = document.getElementById("myReadBtn_1");
+                        <button onclick="myFunction_1()" id="myReadBtn_1">Показать больше</button>
+                        <script>
+                            function myFunction_1() {
+                                var dots_1 = document.getElementById("dots_1");
+                                var moreText_1 = document.getElementById("more_1");
+                                var btnText_1 = document.getElementById("myReadBtn_1");
 
-                            if (dots_1.style.display === "none") {
-                                dots_1.style.display = "inline";
-                                btnText_1.innerHTML = "Показать больше";
-                                moreText_1.style.display = "none";
-                            } else {
-                                dots_1.style.display = "none";
-                                btnText_1.innerHTML = "Показать меньше";
-                                moreText_1.style.display = "inline";
+                                if (dots_1.style.display === "none") {
+                                    dots_1.style.display = "inline";
+                                    btnText_1.innerHTML = "Показать больше";
+                                    moreText_1.style.display = "none";
+                                } else {
+                                    dots_1.style.display = "none";
+                                    btnText_1.innerHTML = "Показать меньше";
+                                    moreText_1.style.display = "inline";
+                                }
                             }
-                        }
-                    </script>
+                        </script>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="block">
-            <div class="bl_title">
-                <span class="title">Жанр</span>
-            </div>
-            <div class="bl_filter">
-                <div>
-                    <div class="choice">
-                        <label sectionindex="0" itemindex="0" class="x7-a x7-a3">
-                            <div class="x7-a0">
-                                <div class="aa1-a o2e">
-                                    <input type="checkbox" name="" class="x7-a2">
-                                    <span class="em4 me4 m4e em7 tsBodyL e3o eo3">
+            <div class="block">
+                <div class="bl_title">
+                    <span class="title">Жанр</span>
+                </div>
+                <div class="bl_filter">
+                    <div>
+                        <div class="choice">
+                            <label sectionindex="0" itemindex="0" class="x7-a x7-a3">
+                                <div class="x7-a0">
+                                    <div class="aa1-a o2e">
+                                        <input type="checkbox" name="" class="x7-a2">
+                                        <span class="em4 me4 m4e em7 tsBodyL e3o eo3">
                                     <span>Аллегория</span>
                                 </span>
+                                    </div>
                                 </div>
-                            </div>
-                        </label>
-                    </div>
-                    <div class="choice">
-                        <label sectionindex="0" itemindex="1" class="x7-a x7-a3">
-                            <div class="x7-a0">
-                                <div class="aa1-a o2e">
-                                    <input type="checkbox" name="" class="x7-a2">
-                                    <span class="em4 me4 m4e em7 tsBodyL e3o eo3">
+                            </label>
+                        </div>
+                        <div class="choice">
+                            <label sectionindex="0" itemindex="1" class="x7-a x7-a3">
+                                <div class="x7-a0">
+                                    <div class="aa1-a o2e">
+                                        <input type="checkbox" name="" class="x7-a2">
+                                        <span class="em4 me4 m4e em7 tsBodyL e3o eo3">
                                     <span>Анималистика</span>
                                 </span>
+                                    </div>
                                 </div>
-                            </div>
-                        </label>
-                    </div>
-                    <div class="choice">
-                        <label sectionindex="0" itemindex="2" class="x7-a x7-a3">
-                            <div class="x7-a0">
-                                <div class="aa1-a o2e">
-                                    <input type="checkbox" name="" class="x7-a2">
-                                    <span class="em4 me4 m4e em7 tsBodyL e3o eo3">
+                            </label>
+                        </div>
+                        <div class="choice">
+                            <label sectionindex="0" itemindex="2" class="x7-a x7-a3">
+                                <div class="x7-a0">
+                                    <div class="aa1-a o2e">
+                                        <input type="checkbox" name="" class="x7-a2">
+                                        <span class="em4 me4 m4e em7 tsBodyL e3o eo3">
                                     <span>Жанровая живопись</span>
                                 </span>
+                                    </div>
                                 </div>
-                            </div>
-                        </label>
-                    </div>
-                    <div class="choice">
-                        <label sectionindex="0" itemindex="3" class="x7-a x7-a3">
-                            <div class="x7-a0">
-                                <div class="aa1-a o2e">
-                                    <input type="checkbox" name="" class="x7-a2">
-                                    <span class="em4 me4 m4e em7 tsBodyL e3o eo3">
+                            </label>
+                        </div>
+                        <div class="choice">
+                            <label sectionindex="0" itemindex="3" class="x7-a x7-a3">
+                                <div class="x7-a0">
+                                    <div class="aa1-a o2e">
+                                        <input type="checkbox" name="" class="x7-a2">
+                                        <span class="em4 me4 m4e em7 tsBodyL e3o eo3">
                                     <span>Интерьер</span>
                                 </span>
+                                    </div>
                                 </div>
-                            </div>
-                        </label>
-                    </div>
-                    <div class="choice">
-                        <label sectionindex="0" itemindex="4" class="x7-a x7-a3">
-                            <div class="x7-a0">
-                                <div class="aa1-a o2e">
-                                    <input type="checkbox" name="" class="x7-a2">
-                                    <span class="em4 me4 m4e em7 tsBodyL e3o eo3">
+                            </label>
+                        </div>
+                        <div class="choice">
+                            <label sectionindex="0" itemindex="4" class="x7-a x7-a3">
+                                <div class="x7-a0">
+                                    <div class="aa1-a o2e">
+                                        <input type="checkbox" name="" class="x7-a2">
+                                        <span class="em4 me4 m4e em7 tsBodyL e3o eo3">
                                     <span>Историческая живопись</span>
                                 </span>
+                                    </div>
                                 </div>
-                            </div>
-                        </label>
-                    </div>
-                    <span id="dots_2"></span>
-                    <span id="more_2">
+                            </label>
+                        </div>
+                        <span id="dots_2"></span>
+                        <span id="more_2">
                 <div class="choice">
                     <label sectionindex="0" itemindex="5" class="x7-a x7-a3">
                         <div class="x7-a0">
@@ -435,95 +437,95 @@
                     </label>
                 </div>
                 </span>
-                    <button onclick="myFunction_2()" id="myReadBtn_2">Показать больше</button>
-                    <script>
-                        function myFunction_2() {
-                            var dots_2 = document.getElementById("dots_2");
-                            var moreText_2 = document.getElementById("more_2");
-                            var btnText_2 = document.getElementById("myReadBtn_2");
+                        <button onclick="myFunction_2()" id="myReadBtn_2">Показать больше</button>
+                        <script>
+                            function myFunction_2() {
+                                var dots_2 = document.getElementById("dots_2");
+                                var moreText_2 = document.getElementById("more_2");
+                                var btnText_2 = document.getElementById("myReadBtn_2");
 
-                            if (dots_2.style.display === "none") {
-                                dots_2.style.display = "inline";
-                                btnText_2.innerHTML = "Показать больше";
-                                moreText_2.style.display = "none";
-                            } else {
-                                dots_2.style.display = "none";
-                                btnText_2.innerHTML = "Показать меньше";
-                                moreText_2.style.display = "inline";
+                                if (dots_2.style.display === "none") {
+                                    dots_2.style.display = "inline";
+                                    btnText_2.innerHTML = "Показать больше";
+                                    moreText_2.style.display = "none";
+                                } else {
+                                    dots_2.style.display = "none";
+                                    btnText_2.innerHTML = "Показать меньше";
+                                    moreText_2.style.display = "inline";
+                                }
                             }
-                        }
-                    </script>
+                        </script>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="block">
-            <div class="bl_title">
-                <span class="title">Материал</span>
-            </div>
-            <div class="bl_filter">
-                <div>
-                    <div class="choice">
-                        <label sectionindex="0" itemindex="0" class="x7-a x7-a3">
-                            <div class="x7-a0">
-                                <div class="aa1-a o2e">
-                                    <input type="checkbox" name="" class="x7-a2">
-                                    <span class="em4 me4 m4e em7 tsBodyL e3o eo3">
+            <div class="block">
+                <div class="bl_title">
+                    <span class="title">Материал</span>
+                </div>
+                <div class="bl_filter">
+                    <div>
+                        <div class="choice">
+                            <label sectionindex="0" itemindex="0" class="x7-a x7-a3">
+                                <div class="x7-a0">
+                                    <div class="aa1-a o2e">
+                                        <input type="checkbox" name="" class="x7-a2">
+                                        <span class="em4 me4 m4e em7 tsBodyL e3o eo3">
                                     <span>Бумага</span>
                                 </span>
+                                    </div>
                                 </div>
-                            </div>
-                        </label>
-                    </div>
-                    <div class="choice">
-                        <label sectionindex="0" itemindex="1" class="x7-a x7-a3">
-                            <div class="x7-a0">
-                                <div class="aa1-a o2e">
-                                    <input type="checkbox" name="" class="x7-a2">
-                                    <span class="em4 me4 m4e em7 tsBodyL e3o eo3">
+                            </label>
+                        </div>
+                        <div class="choice">
+                            <label sectionindex="0" itemindex="1" class="x7-a x7-a3">
+                                <div class="x7-a0">
+                                    <div class="aa1-a o2e">
+                                        <input type="checkbox" name="" class="x7-a2">
+                                        <span class="em4 me4 m4e em7 tsBodyL e3o eo3">
                                     <span>Дерево</span>
                                 </span>
+                                    </div>
                                 </div>
-                            </div>
-                        </label>
-                    </div>
-                    <div class="choice">
-                        <label sectionindex="0" itemindex="2" class="x7-a x7-a3">
-                            <div class="x7-a0">
-                                <div class="aa1-a o2e">
-                                    <input type="checkbox" name="" class="x7-a2">
-                                    <span class="em4 me4 m4e em7 tsBodyL e3o eo3">
+                            </label>
+                        </div>
+                        <div class="choice">
+                            <label sectionindex="0" itemindex="2" class="x7-a x7-a3">
+                                <div class="x7-a0">
+                                    <div class="aa1-a o2e">
+                                        <input type="checkbox" name="" class="x7-a2">
+                                        <span class="em4 me4 m4e em7 tsBodyL e3o eo3">
                                     <span>Доска</span>
                                 </span>
+                                    </div>
                                 </div>
-                            </div>
-                        </label>
-                    </div>
-                    <div class="choice">
-                        <label sectionindex="0" itemindex="3" class="x7-a x7-a3">
-                            <div class="x7-a0">
-                                <div class="aa1-a o2e">
-                                    <input type="checkbox" name="" class="x7-a2">
-                                    <span class="em4 me4 m4e em7 tsBodyL e3o eo3">
+                            </label>
+                        </div>
+                        <div class="choice">
+                            <label sectionindex="0" itemindex="3" class="x7-a x7-a3">
+                                <div class="x7-a0">
+                                    <div class="aa1-a o2e">
+                                        <input type="checkbox" name="" class="x7-a2">
+                                        <span class="em4 me4 m4e em7 tsBodyL e3o eo3">
                                     <span>Масло</span>
                                 </span>
+                                    </div>
                                 </div>
-                            </div>
-                        </label>
-                    </div>
-                    <div class="choice">
-                        <label sectionindex="0" itemindex="4" class="x7-a x7-a3">
-                            <div class="x7-a0">
-                                <div class="aa1-a o2e">
-                                    <input type="checkbox" name="" class="x7-a2">
-                                    <span class="em4 me4 m4e em7 tsBodyL e3o eo3">
+                            </label>
+                        </div>
+                        <div class="choice">
+                            <label sectionindex="0" itemindex="4" class="x7-a x7-a3">
+                                <div class="x7-a0">
+                                    <div class="aa1-a o2e">
+                                        <input type="checkbox" name="" class="x7-a2">
+                                        <span class="em4 me4 m4e em7 tsBodyL e3o eo3">
                                     <span>Пастель</span>
                                 </span>
+                                    </div>
                                 </div>
-                            </div>
-                        </label>
-                    </div>
-                    <span id="MALO"></span>
-                    <span id="DOHUYA">
+                            </label>
+                        </div>
+                        <span id="MALO"></span>
+                        <span id="DOHUYA">
                 <div class="choice">
                     <label sectionindex="0" itemindex="5" class="x7-a x7-a3">
                         <div class="x7-a0">
@@ -561,95 +563,95 @@
                     </label>
                 </div>
                 </span>
-                    <button onclick="YOUFunction()" id="MAYNKNOPKA">Показать больше</button>
-                    <script>
-                        function YOUFunction() {
-                            var MALO = document.getElementById("MALO");
-                            var MNOGOText = document.getElementById("DOHUYA");
-                            var bUtnText = document.getElementById("MAYNKNOPKA");
+                        <button onclick="YOUFunction()" id="MAYNKNOPKA">Показать больше</button>
+                        <script>
+                            function YOUFunction() {
+                                var MALO = document.getElementById("MALO");
+                                var MNOGOText = document.getElementById("DOHUYA");
+                                var bUtnText = document.getElementById("MAYNKNOPKA");
 
-                            if (MALO.style.display === "none") {
-                                MALO.style.display = "inline";
-                                bUtnText.innerHTML = "Показать больше";
-                                MNOGOText.style.display = "none";
-                            } else {
-                                MALO.style.display = "none";
-                                bUtnText.innerHTML = "Показать меньше";
-                                MNOGOText.style.display = "inline";
+                                if (MALO.style.display === "none") {
+                                    MALO.style.display = "inline";
+                                    bUtnText.innerHTML = "Показать больше";
+                                    MNOGOText.style.display = "none";
+                                } else {
+                                    MALO.style.display = "none";
+                                    bUtnText.innerHTML = "Показать меньше";
+                                    MNOGOText.style.display = "inline";
+                                }
                             }
-                        }
-                    </script>
+                        </script>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="block">
-            <div class="bl_title">
-                <span class="title">Художник</span>
-            </div>
-            <div class="bl_filter">
-                <div>
-                    <div class="choice">
-                        <label sectionindex="0" itemindex="0" class="x7-a x7-a3">
-                            <div class="x7-a0">
-                                <div class="aa1-a o2e">
-                                    <input type="checkbox" name="" class="x7-a2">
-                                    <span class="em4 me4 m4e em7 tsBodyL e3o eo3">
+            <div class="block">
+                <div class="bl_title">
+                    <span class="title">Художник</span>
+                </div>
+                <div class="bl_filter">
+                    <div>
+                        <div class="choice">
+                            <label sectionindex="0" itemindex="0" class="x7-a x7-a3">
+                                <div class="x7-a0">
+                                    <div class="aa1-a o2e">
+                                        <input type="checkbox" name="" class="x7-a2">
+                                        <span class="em4 me4 m4e em7 tsBodyL e3o eo3">
                                     <span>Винсент Ван Гог</span>
                                 </span>
+                                    </div>
                                 </div>
-                            </div>
-                        </label>
-                    </div>
-                    <div class="choice">
-                        <label sectionindex="0" itemindex="1" class="x7-a x7-a3">
-                            <div class="x7-a0">
-                                <div class="aa1-a o2e">
-                                    <input type="checkbox" name="" class="x7-a2">
-                                    <span class="em4 me4 m4e em7 tsBodyL e3o eo3">
+                            </label>
+                        </div>
+                        <div class="choice">
+                            <label sectionindex="0" itemindex="1" class="x7-a x7-a3">
+                                <div class="x7-a0">
+                                    <div class="aa1-a o2e">
+                                        <input type="checkbox" name="" class="x7-a2">
+                                        <span class="em4 me4 m4e em7 tsBodyL e3o eo3">
                                     <span>Густав Климт</span>
                                 </span>
+                                    </div>
                                 </div>
-                            </div>
-                        </label>
-                    </div>
-                    <div class="choice">
-                        <label sectionindex="0" itemindex="2" class="x7-a x7-a3">
-                            <div class="x7-a0">
-                                <div class="aa1-a o2e">
-                                    <input type="checkbox" name="" class="x7-a2">
-                                    <span class="em4 me4 m4e em7 tsBodyL e3o eo3">
+                            </label>
+                        </div>
+                        <div class="choice">
+                            <label sectionindex="0" itemindex="2" class="x7-a x7-a3">
+                                <div class="x7-a0">
+                                    <div class="aa1-a o2e">
+                                        <input type="checkbox" name="" class="x7-a2">
+                                        <span class="em4 me4 m4e em7 tsBodyL e3o eo3">
                                     <span>Диего Родригес де Сильва и Веласкес</span>
                                 </span>
+                                    </div>
                                 </div>
-                            </div>
-                        </label>
-                    </div>
-                    <div class="choice">
-                        <label sectionindex="0" itemindex="3" class="x7-a x7-a3">
-                            <div class="x7-a0">
-                                <div class="aa1-a o2e">
-                                    <input type="checkbox" name="" class="x7-a2">
-                                    <span class="em4 me4 m4e em7 tsBodyL e3o eo3">
+                            </label>
+                        </div>
+                        <div class="choice">
+                            <label sectionindex="0" itemindex="3" class="x7-a x7-a3">
+                                <div class="x7-a0">
+                                    <div class="aa1-a o2e">
+                                        <input type="checkbox" name="" class="x7-a2">
+                                        <span class="em4 me4 m4e em7 tsBodyL e3o eo3">
                                     <span>Иван Иванович Шишкин</span>
                                 </span>
+                                    </div>
                                 </div>
-                            </div>
-                        </label>
-                    </div>
-                    <div class="choice">
-                        <label sectionindex="0" itemindex="4" class="x7-a x7-a3">
-                            <div class="x7-a0">
-                                <div class="aa1-a o2e">
-                                    <input type="checkbox" name="" class="x7-a2">
-                                    <span class="em4 me4 m4e em7 tsBodyL e3o eo3">
+                            </label>
+                        </div>
+                        <div class="choice">
+                            <label sectionindex="0" itemindex="4" class="x7-a x7-a3">
+                                <div class="x7-a0">
+                                    <div class="aa1-a o2e">
+                                        <input type="checkbox" name="" class="x7-a2">
+                                        <span class="em4 me4 m4e em7 tsBodyL e3o eo3">
                                     <span>Иван Константинович Айвазовский</span>
                                 </span>
+                                    </div>
                                 </div>
-                            </div>
-                        </label>
-                    </div>
-                    <span id="dots_3"></span>
-                    <span id="more_3">
+                            </label>
+                        </div>
+                        <span id="dots_3"></span>
+                        <span id="more_3">
                 <div class="choice">
                     <label sectionindex="0" itemindex="5" class="x7-a x7-a3">
                         <div class="x7-a0">
@@ -855,143 +857,145 @@
                     </label>
                 </div>
                 </span>
-                    <button onclick="myFunction_3()" id="myReadBtn_3">Показать больше</button>
-                    <script>
-                        function myFunction_3() {
-                            var dots_3 = document.getElementById("dots_3");
-                            var moreText_3 = document.getElementById("more_3");
-                            var btnText_3 = document.getElementById("myReadBtn_3");
+                        <button onclick="myFunction_3()" id="myReadBtn_3">Показать больше</button>
+                        <script>
+                            function myFunction_3() {
+                                var dots_3 = document.getElementById("dots_3");
+                                var moreText_3 = document.getElementById("more_3");
+                                var btnText_3 = document.getElementById("myReadBtn_3");
 
-                            if (dots_3.style.display === "none") {
-                                dots_3.style.display = "inline";
-                                btnText_3.innerHTML = "Показать больше";
-                                moreText_3.style.display = "none";
-                            } else {
-                                dots_3.style.display = "none";
-                                btnText_3.innerHTML = "Показать меньше";
-                                moreText_3.style.display = "inline";
+                                if (dots_3.style.display === "none") {
+                                    dots_3.style.display = "inline";
+                                    btnText_3.innerHTML = "Показать больше";
+                                    moreText_3.style.display = "none";
+                                } else {
+                                    dots_3.style.display = "none";
+                                    btnText_3.innerHTML = "Показать меньше";
+                                    moreText_3.style.display = "inline";
+                                }
                             }
-                        }
-                    </script>
+                        </script>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="block">
-            <div class="bl_title">
-                <span class="title">Век</span>
-            </div>
-            <div class="bl_filter">
-                <div>
-                    <div class="choice">
-                        <label for="в15" sectionindex="0" itemindex="0" class="в15">
-                            <div class="x7-a0">
-                                <div class="aa1-a o2e">
-                                    <input type="checkbox" name="в15" class="в15">
-                                    <span class="в15">
+            <div class="block">
+                <div class="bl_title">
+                    <span class="title">Век</span>
+                </div>
+                <div class="bl_filter">
+                    <div>
+                        <div class="choice">
+                            <label for="в15" sectionindex="0" itemindex="0" class="в15">
+                                <div class="x7-a0">
+                                    <div class="aa1-a o2e">
+                                        <input type="checkbox" name="в15" class="в15">
+                                        <span class="в15">
                                     <span>15 век</span>
                                 </span>
+                                    </div>
                                 </div>
-                            </div>
-                        </label>
-                    </div>
-                    <div class="choice">
-                        <label for="в16" sectionindex="0" itemindex="1" class="в16">
-                            <div class="x7-a0">
-                                <div class="aa1-a o2e">
-                                    <input type="checkbox" name="в16" class="в16">
-                                    <span class="в16">
+                            </label>
+                        </div>
+                        <div class="choice">
+                            <label for="в16" sectionindex="0" itemindex="1" class="в16">
+                                <div class="x7-a0">
+                                    <div class="aa1-a o2e">
+                                        <input type="checkbox" name="в16" class="в16">
+                                        <span class="в16">
                                     <span>16 век</span>
                                 </span>
+                                    </div>
                                 </div>
-                            </div>
-                        </label>
-                    </div>
-                    <div class="choice">
-                        <label for="в17" sectionindex="0" itemindex="2" class="в17">
-                            <div class="x7-a0">
-                                <div class="aa1-a o2e">
-                                    <input type="checkbox" name="в17" class="в17">
-                                    <span class="в17">
+                            </label>
+                        </div>
+                        <div class="choice">
+                            <label for="в17" sectionindex="0" itemindex="2" class="в17">
+                                <div class="x7-a0">
+                                    <div class="aa1-a o2e">
+                                        <input type="checkbox" name="в17" class="в17">
+                                        <span class="в17">
                                     <span>17 век</span>
                                 </span>
+                                    </div>
                                 </div>
-                            </div>
-                        </label>
-                    </div>
-                    <div class="choice">
-                        <label for="в19" sectionindex="0" itemindex="3" class="в19">
-                            <div class="x7-a0">
-                                <div class="aa1-a o2e">
-                                    <input type="checkbox" name="в19" class="в19">
-                                    <span class="в19">
+                            </label>
+                        </div>
+                        <div class="choice">
+                            <label for="в19" sectionindex="0" itemindex="3" class="в19">
+                                <div class="x7-a0">
+                                    <div class="aa1-a o2e">
+                                        <input type="checkbox" name="в19" class="в19">
+                                        <span class="в19">
                                         <span>19 век</span>
                                     </span>
+                                    </div>
                                 </div>
-                            </div>
-                        </label>
-                    </div>
-                    <div class="choice">
-                        <label for="в20" sectionindex="0" itemindex="4" class="в20">
-                            <div class="x7-a0">
-                                <div class="aa1-a o2e">
-                                    <input c="all" type="checkbox" name="в20" id="в20" class="vek" onclick="filterSelection('20')">
-                                    <span class="в20">
+                            </label>
+                        </div>
+                        <div class="choice">
+                            <label for="в20" sectionindex="0" itemindex="4" class="в20">
+                                <div class="x7-a0">
+                                    <div class="aa1-a o2e">
+                                        <input c="all" type="checkbox" name="в20" id="в20" class="vek"
+                                               onclick="filterSelection('20')">
+                                        <span class="в20">
                                     <span>20 век</span>
                                 </span>
+                                    </div>
                                 </div>
-                            </div>
-                        </label>
+                            </label>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="pravo">
 
-        <a id="arts_count" hidden>{{ arts_count }}</a>
+        <div class="pravo">
 
-        {% for block in arts %}
-            {% set block_ind = loop.index %}
+            <a id="arts_count" hidden>{{ arts_count }}</a>
 
-            <div class="row space-rows">
-                {% for painting in block %}
-                    {% set art_ind = loop.index %}
+            {% for block in arts %}
+                {% set block_ind = loop.index %}
 
-                    <form method="get" action="#" name="t{{ ((block_ind - 1) * 3 + art_ind - 1) }}"
-                          hidden>
-                        <input type="text" name="id" value="{{ painting['_id'] }}">
-                    </form>
+                <div class="row space-rows">
+                    {% for painting in block %}
+                        {% set art_ind = loop.index %}
 
-                    <div class="col filtering" >
-                        <b style="display: none">{{ painting['artist'] }} {{ painting['year'] }} {{ painting['epoch'] }} {{ painting['gengre'] }} {{ painting['materials'] }}</b>
-                        <div class="card cards-shadown cards-hover aos-init aos-animate" data-aos=flip-left
-                             data-aos-duration="950" style="border-radius: 30px;border: none; height: 500px">
+                        <form method="get" action="#" name="t{{ ((block_ind - 1) * 3 + art_ind - 1) }}"
+                              hidden>
+                            <input type="text" name="id" value="{{ painting['_id'] }}">
+                        </form>
 
-                            <div class="card-header"
-                                 onclick="document.forms['t{{ ((block_ind - 1) * 3 + art_ind - 1) }}'].submit();">
-                                <div id="photos">
-                                    <img src="{{ painting['image'] }}" alt="slide" id="{{ id }} ">
+                        <div class="col filtering">
+                            <b style="display: none">{{ painting['artist'] }} {{ painting['year'] }} {{ painting['epoch'] }} {{ painting['gengre'] }} {{ painting['materials'] }}</b>
+                            <div class="card cards-shadown cards-hover aos-init aos-animate" data-aos=flip-left
+                                 data-aos-duration="950" style="border-radius: 30px;border: none; height: 500px">
+
+                                <div class="card-header"
+                                     onclick="document.forms['t{{ ((block_ind - 1) * 3 + art_ind - 1) }}'].submit();">
+                                    <div id="photos">
+                                        <img src="{{ painting['image'] }}" alt="slide" id="{{ id }} ">
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <p class="card-text cardbody-sub-text"
+                                       onclick="document.forms['t{{ ((block_ind - 1) * 3 + art_ind - 1) }}'].submit();">
+                                        {{ painting['artist'] }}
+                                    </p>
+                                    <p class="card-text cardbody-sub-text"
+                                       onclick="document.forms['t{{ ((block_ind - 1) * 3 + art_ind - 1) }}'].submit();">
+                                        {{ painting['name'] }}
+                                    </p>
                                 </div>
                             </div>
-                            <div class="card-body">
-                                <p class="card-text cardbody-sub-text"
-                                   onclick="document.forms['t{{ ((block_ind - 1) * 3 + art_ind - 1) }}'].submit();">
-                                    {{ painting['artist'] }}
-                                </p>
-                                <p class="card-text cardbody-sub-text"
-                                   onclick="document.forms['t{{ ((block_ind - 1) * 3 + art_ind - 1) }}'].submit();">
-                                    {{ painting['name'] }}
-                                </p>
-                            </div>
                         </div>
-                    </div>
 
-                {% endfor %}
-            </div>
-        {% endfor %}
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        </div>
+
+        <script type="text/javascript" src="{{ url_for('static', filename='scripts/excursions.js') }}"></script>
+
     </div>
-
-    <script type="text/javascript" src="{{ url_for('static', filename='scripts/excursions.js') }}"></script>
-
-
 {% endblock %}
