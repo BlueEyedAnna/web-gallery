@@ -957,29 +957,29 @@
                 {% for painting in block %}
                     {% set art_ind = loop.index %}
 
-                    <form method="get" action="#" name="t{{ ((block_ind - 1) * 3 + art_ind - 1) }}"
+                    <form method="get" action="#" name="t{{ ((block_ind - 1) * 2 + art_ind - 1) }}"
                           hidden>
                         <input type="text" name="id" value="{{ painting['_id'] }}">
                     </form>
 
                     <div class="col filtering" >
-                        <b style="display: none">{{ painting['artist'] }} {{ painting['year'] }} {{ painting['epoch'] }} {{ painting['gengre'] }} {{ painting['materials'] }}</b>
+                        <b style="display: none">{{ painting['artist'] }} {{ painting['year'] }} {{ painting['epoch'] }} {{ painting['genre'] }} {{ painting['materials'] }}</b>
                         <div class="card cards-shadown cards-hover aos-init aos-animate" data-aos=flip-left
                              data-aos-duration="950" style="border-radius: 30px;border: none; height: 500px">
 
                             <div class="card-header"
-                                 onclick="document.forms['t{{ ((block_ind - 1) * 3 + art_ind - 1) }}'].submit();">
+                                 onclick="document.forms['t{{ ((block_ind - 1) * 2 + art_ind - 1) }}'].submit();">
                                 <div id="photos">
                                     <img src="data:image/jpeg;base64, {{ painting['image'] }}" alt="slide" id="{{ id }} ">
                                 </div>
                             </div>
                             <div class="card-body">
                                 <p class="card-text cardbody-sub-text"
-                                   onclick="document.forms['t{{ ((block_ind - 1) * 3 + art_ind - 1) }}'].submit();">
+                                   onclick="document.forms['t{{ ((block_ind - 1) * 2 + art_ind - 1) }}'].submit();">
                                     {{ painting['artist'] }}
                                 </p>
                                 <p class="card-text cardbody-sub-text"
-                                   onclick="document.forms['t{{ ((block_ind - 1) * 3 + art_ind - 1) }}'].submit();">
+                                   onclick="document.forms['t{{ ((block_ind - 1) * 2 + art_ind - 1) }}'].submit();">
                                     {{ painting['name'] }}
                                 </p>
                             </div>
@@ -991,7 +991,7 @@
         {% endfor %}
     </div>
 
-    <script type="text/javascript" src="{{ url_for('static', filename='scripts/excursions.js') }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename='scripts/filter.js') }}"></script>
 
 
 {% endblock %}
