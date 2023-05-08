@@ -35,6 +35,63 @@ def change_exhib_list():
     print("Ok")
 
 
+@app.route('/delete_exhibition', methods=['POST'])
+def delete_exhibition():
+    delete_id = request.form['id']
+    exhibitions_db.delete_one({'_id': ObjectId(delete_id)})
+
+    return redirect(url_for('creation'))
+
+
+@app.route('/add_exhibition', methods=['GET', 'POST'])
+def add_exhibition():
+    if request.method == 'GET':
+        return render_template('add_exhibition.html')
+
+    photos_in = request.files.getlist('imgs')
+    photos = []
+
+    for photo in photos_in:
+        photo_str = str(base64.b64encode(photo.read()))
+        photos.append(photo_str[2:-1])
+
+    if 'stars' in request.form and request.form['stars']:
+        stars = int(request.form['stars'])
+    else:
+        stars = 0
+
+    if '_id' in request.form and request.form['_id']:
+        result = exhibitions_db.update_one({'_id': ObjectId(request.form['_id'])}, {'$set': {
+            'name': request.form['exhibition_name'],
+            'stars': stars,
+            'photos': photos,
+            'about': request.form['about']
+        }})
+    else:
+        result = exhibitions_db.insert_one({
+            'name': request.form['exhibition_name'],
+            'stars': int(request.form['stars']),
+            'photos': photos,
+            'about': request.form['about']
+        })
+
+    print(result)
+
+    return redirect('creation')  # redirect(f'/exhibition?id={result.inserted_id}')
+
+
+@app.route('/modify_exhibition', methods=['POST'])
+def modify_exhibition():
+    if request.method == 'POST':
+        modify_id = request.form['id']
+        exhibition = exhibitions_db.find_one({'_id': ObjectId(modify_id)})
+
+        return render_template('add_exhibition.html',
+                               ver=datetime.datetime.now().timestamp(),
+                               is_authenticated=True,
+                               exhibition=exhibition)
+
+
 @app.route('/creation', methods=['GET', 'POST'])
 def creation():
     if current_user.is_authenticated:
@@ -67,27 +124,27 @@ def creation():
                 exhibitions=output_exhibitions,
                 exhibitions_count=exhibitions_count
             )
-        elif request.method == 'POST':
-            update = {}
-            # название выставки
-            if request.form['name']:
-                update['name'] = request.form['name']
-
-            # рейтинг (1, 2 или 3 звезды)
-            # if request.form['stars']:
-            #     update['stars'] = request.form['stars']
-
-            # поле "о чём" (про выставку)
-            if request.form['about']:
-                update['about'] = request.form['about']
-            # фотографии (несколько)
-            if request.files.get('photos'):
-                update['photos'] = str(base64.b64encode(request.files.get('photos').read()))[2:-1]
-
-            if len(update.keys()) != 0:
-                exhibitions_db.update_one({'_id': current_user.id}, {'$set': update})
-
-            return redirect(url_for('creation'))  # ИЗМЕНИТЬ??
+        # elif request.method == 'POST':
+        #     update = {}
+        #     # название выставки
+        #     if request.form['name']:
+        #         update['name'] = request.form['name']
+        # 
+        #     # рейтинг (1, 2 или 3 звезды)
+        #     # if request.form['stars']:
+        #     #     update['stars'] = request.form['stars']
+        # 
+        #     # поле "о чём" (про выставку)
+        #     if request.form['about']:
+        #         update['about'] = request.form['about']
+        #     # фотографии (несколько)
+        #     if request.files.get('photos'):
+        #         update['photos'] = str(base64.b64encode(request.files.get('photos').read()))[2:-1]
+        # 
+        #     if len(update.keys()) != 0:
+        #         exhibitions_db.update_one({'_id': current_user.id}, {'$set': update})
+        # 
+        #     return redirect(url_for('creation'))  # ИЗМЕНИТЬ??
     else:
         return redirect(url_for('index'))
 
@@ -175,8 +232,24 @@ class CheckLogin(Resource):
 # регистрация API
 api.add_resource(LoginUser, "/login_user/<string:login>&<string:password>")
 api.add_resource(CheckLogin, "/check_login/<string:login>", "/check_login/")
+
+
 # </editor-fold>
+
+def load_arts_from_dir(dir):
+    import os
+
+    for file in os.listdir(dir):
+        _id = file.split('_')[0]
+
+        with open(dir + '/' + file, 'rb') as fs:
+            photo_str = str(base64.b64encode(fs.read()))
+            photo_str = photo_str[2:-1]
+
+        db['art'].update_one({'_id': _id}, {'$set': {'image': photo_str}})
+
 
 # запуск сервера
 if __name__ == '__main__':
+    # load_arts_from_dir('C:/Users/geib2/OneDrive/Рабочий стол/arts')
     app.run(host='0.0.0.0', port=5050, debug=True)

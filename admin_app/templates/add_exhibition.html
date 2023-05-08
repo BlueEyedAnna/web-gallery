@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <title>
+        Добавление
+    </title>
+
+    {# иконка маленькая во вкладке браузера#}
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="image/x-icon">
+
+    <link rel="stylesheet" type="text/css"
+          href="{{ url_for('static', filename='assets/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css"
+          href="{{ url_for('static', filename='css/login_forms.css') }}? version = {{ ver }}">
+    <link rel="stylesheet" type="text/css"
+          href="{{ url_for('static', filename='css/creation.css') }}? version = {{ ver }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/assets/css/Animation-Cards.css') }}">
+
+</head>
+
+<body>
+<script type="text/javascript" src="{{ url_for('static', filename='assets/jquerymin.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='assets/bootstrap/js/bootstrap.min.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='assets/js/bs-init.js') }}"></script>
+
+<header>
+    <div class="container">
+        <div class="heading clearfix">
+            <img src="/static/img/logo.png" alt="Галерея" class="logo"> {#логотип#}
+            <nav>
+                <ul class="menu">
+                    {% if is_authenticated %}
+                        <li>
+                            <button href="/login" data-bs-target="#modal-2" data-bs-toggle="modal" type="button"
+                                    id="loginBtn">Выйти
+                            </button>
+                        </li>
+                    {% else %}
+                        <li>
+                            <button href="/login" data-bs-target="#modal-1" data-bs-toggle="modal" type="button"
+                                    id="loginBtn">Войти
+                            </button>
+                        </li>
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </div>
+</header>
+
+<div class="card"
+     style="margin: 40px;background-color: #32423d;color: var(--bs-gray-200);border-radius: 30px;">
+    <div class="card-body" style="width: 100%">
+        <h2 class="card-title">Выставка:</h2>
+        <br>
+        <form action="/add_exhibition" method="post" enctype="multipart/form-data">
+            <input name="_id" type="text" {% if exhibition is not none %}value="{{ exhibition['_id'] }}"{% endif %} hidden>
+
+            <input class="form-control" type="text" name="exhibition_name" placeholder="Название выставки" autocomplete="on" required
+                   style="margin-bottom: 16px;font-weight: bold;font-size: 20px;border-width: 2px;border-radius: 17px;"
+                   {% if exhibition is not none %}value="{{ exhibition['name'] }}"{% endif %}>
+
+            <textarea class="form-control" name="about" placeholder="О выставке" autocomplete="on" required
+                      style="    margin-bottom: 16px;font-weight: bold;font-size: 20px;border-width: 2px;border-radius: 17px;height: 165px;max-height: 500px;min-height: 300px;">{% if exhibition is not none %}{{ exhibition['about'] }}{% endif %}</textarea>
+
+            <label>
+                Выберете фотографии:
+                <input class="form-control" type="file" name="imgs" accept="image/jpeg" multiple required
+                       style="margin-bottom: 16px;font-weight: bold;font-size: 20px;border-width: 2px;border-radius: 17px;">
+            </label>
+
+            <br>
+
+            <div class="rating">
+                <label>
+                    <input type="radio" name="stars" value="1"/>
+                    <span class="icon">★</span>
+                </label>
+                <label>
+                    <input type="radio" name="stars" value="2"/>
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                </label>
+                <label>
+                    <input type="radio" name="stars" value="3"/>
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                </label>
+                <label>
+                    <input type="radio" name="stars" value="4"/>
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                </label>
+                <label>
+                    <input type="radio" name="stars" value="5"/>
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                    <span class="icon">★</span>
+                </label>
+            </div>
+
+            <input class="btn btn-success" type="submit" value="Добавить новую выставку"
+                   style="font-weight: bold;font-size: 20px;background: var(--bs-gray-200);color: var(--bs-gray-700);width: 100%;border-radius: 17px;"/>
+        </form>
+    </div>
+</div>
+
+</body>
+
+
+<footer>
+    <div class="footer-info clearfix">
+        <div class="container">
+            <div class="row">
+                <div class="col" id="col-1">
+                    <h3>Контакты</h3>
+                    <p>e-mail: gareleya@mail.com</p>
+                    <p>телефон: 515-15-15</p>
+                </div>
+                <div class="col">
+                    <h3>Адрес</h3>
+                    <p>г.Казань, ул.Профсоюзная, д.181</p>
+                    <p>Ждём вас в нашей галерее!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+
+{# модальное окно выхода #}
+<div class="modal fade" role="dialog" tabindex="-2" id="modal-2">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content" style="border: none;">
+            <div class="modal-header" style="border: none;">
+                <h4 class="modal-title" id="modal-title-out" style="font-weight: bold;">
+                    Подтвердите выход
+                </h4>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close2"></button>
+            </div>
+            <div class="modal-footer" style="border: none;">
+                <form action="/logout" method="post" class="form-contact">
+                    <input class="btn btn-danger clearfix" type="submit" value="Выйти"
+                           style="font-weight: bold;font-size: 20px;"/>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="{{ url_for('static', filename='scripts/modal.js') }}"></script>
+
+</html>
