@@ -46,7 +46,10 @@ def delete_exhibition():
 @app.route('/add_exhibition', methods=['GET', 'POST'])
 def add_exhibition():
     if request.method == 'GET':
-        return render_template('add_exhibition.html')
+        return render_template('add_exhibition.html',
+                               ver=datetime.datetime.now().timestamp(),
+                               is_authenticated=True,
+                               exhibition=None)
 
     photos_in = request.files.getlist('imgs')
     photos = []
