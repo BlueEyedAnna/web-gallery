@@ -4,6 +4,10 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+body{
+     background-color: #021314;
+}
+
 /*bar*/
 header {
     background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.8)), url('../img/main_bg2.jpg') no-repeat center top / cover;
@@ -16,7 +20,7 @@ header {
     display: table;
     width: 100%;
     clear: both;
-    background-color: inherit;
+    background-color: transparent;
 }
 
 .heading {
@@ -26,6 +30,7 @@ header {
 .container {
     width: 930px;
     margin: 0 auto;
+    /*background-color: #021314;*/
 }
 
 .logo {
@@ -83,11 +88,16 @@ nav {
 }
 
 /*содержимое: фильтрация и др*/
-.levo {
 
+.filter_body{
+    background-color: #021314;
+}
+
+.levo {
     background-color: black;
+    margin-left: 2%;
     float: left;
-    width: 22%;
+    width: 20%;
     color: #dbdbdb;
 }
 
@@ -174,9 +184,8 @@ nav {
 
 .pravo {
     float: right;
-    width: 77%;
+    width: 78%;
     background-color: #021314;
-
 }
 
 #photos {

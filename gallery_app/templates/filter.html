@@ -970,7 +970,7 @@
                             <div class="card-header"
                                  onclick="document.forms['t{{ ((block_ind - 1) * 3 + art_ind - 1) }}'].submit();">
                                 <div id="photos">
-                                    <img src="data:image/jpeg;base64, {{ painting['image'] }}" alt="slide" id="{{ id }} ">
+                                    <img src="{{ painting['image'] }}" alt="slide" id="{{ id }} ">
                                 </div>
                             </div>
                             <div class="card-body">
