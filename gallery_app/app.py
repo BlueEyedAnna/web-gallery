@@ -81,11 +81,47 @@ def exhibition():
     )
 
 
-@app.route("/excursions")
+@app.route("/excursions", methods=['GET'])
 def excursions():
-    return render_template("excursions.html",
-                           ver=datetime.datetime.now().timestamp(),
-                           is_authenticated=current_user.is_authenticated)
+    excursions_db = list(db['excursions'].find())
+    excursions_count = len(excursions_db)
+
+    block = []
+    output = []
+    ind = -1
+
+    for _excursion in excursions_db:
+        ind += 1
+
+        if ind % 3 == 0:
+            if ind != 0:
+                output.append(block)
+
+            block = [_excursion]
+        else:
+            block.append(_excursion)
+
+    output.append(block)
+
+    return render_template(
+        'excursions.html',
+        ver=datetime.datetime.now().timestamp(),
+        is_authenticated=current_user.is_authenticated,
+        excursions=output,
+        excursions_count=excursions_count
+    )
+
+
+@app.route('/excursion', methods=['GET'])
+def excursion():
+    current_excursion = db['excursions'].find_one({'_id': ObjectId(request.args.get('id'))})
+
+    return render_template(
+        'excursion.html',
+        ver=datetime.datetime.now().timestamp(),
+        is_authenticated=current_user.is_authenticated,
+        excursion=current_excursion
+    )
 
 
 @app.route("/filter")

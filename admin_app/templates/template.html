@@ -2,24 +2,31 @@
 <html lang="ru">
 
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
     <title>
-        Добавление
+        {% block title %}
+        {% endblock %}
     </title>
 
     {# иконка маленькая во вкладке браузера#}
     <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}" type="image/x-icon">
 
+    <!--Стилевое оформление страницы.-->
     <link rel="stylesheet" type="text/css"
           href="{{ url_for('static', filename='assets/bootstrap/css/bootstrap.min.css') }}">
     <link rel="stylesheet" type="text/css"
           href="{{ url_for('static', filename='css/login_forms.css') }}? version = {{ ver }}">
     <link rel="stylesheet" type="text/css"
           href="{{ url_for('static', filename='css/creation.css') }}? version = {{ ver }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='/assets/css/Animation-Cards.css') }}">
 
+    {% block head %}
+    {% endblock %}
 </head>
 
 <body>
+{# импорты для работы модальных окон #}
 <script type="text/javascript" src="{{ url_for('static', filename='assets/jquerymin.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='assets/bootstrap/js/bootstrap.min.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='assets/js/bs-init.js') }}"></script>
@@ -31,6 +38,8 @@
             <nav>
                 <ul class="menu">
                     {% if is_authenticated %}
+                        <li><a href="/creation">Выставки</a></li>
+                        <li><a href="/excurs_change">Экскурсии</a></li>
                         <li>
                             <button href="/login" data-bs-target="#modal-2" data-bs-toggle="modal" type="button"
                                     id="loginBtn">Выйти
@@ -46,84 +55,12 @@
                 </ul>
             </nav>
         </div>
+        {% block headerbutton %}
+        {% endblock %}
     </div>
 </header>
 
-<div id="main">
-    <form id="change" action="/creation" method="post" name="change" enctype="multipart/form-data"
-          style="display: none">
-
-        # Выбор: выставку или экскурсию
-
-        <p class="d-flex" style="max-width: 610px;">
-            <label class="form-label d-inline-flex flex-column" style="margin-right: 40px;">Название</label>
-            <input class="float-end form-control" type="text" name="name"
-                   style="border-radius: 15px;font-size: 20px;">
-
-        </p>
-        <p class="d-flex" style="max-width: 610px;">
-            <label class="form-label d-inline-flex flex-column" style="margin-right: 40px;">Описание</label>
-            <input class="float-end form-control" type="text" name="about"
-                   style="border-radius: 15px;font-size: 20px;">
-        </p>
-
-        <p class="d-flex" style="max-width: 610px;">
-            <label class="form-label d-inline-flex flex-column" style="margin-right: 40px;">Фотографии</label>
-            <input class="float-end form-control" type="file" name="photos" accept=".jpg, .jpeg, .png"
-                   style="font-size: 20px;">
-        </p>
-    </form>
-
-    <div class="buttons">
-        <div class="parts clearfix">
-            <div class="parts_item">
-                <button class="btn btn-primary" type="submit" form="change" id="add_btn">
-                    Добавить
-                </button>
-            </div>
-            <div class="parts_item">
-                <button class="btn btn-primary" type="submit" form="change" id="change_btn">
-                    Изменить
-                </button>
-            </div>
-            <div class="parts_item">
-                <button class="btn btn-primary" type="submit" form="change" id="delete_btn">
-                    Удалить
-                </button>
-            </div>
-        </div>
-    </div>
-</div>
-
-{#<script type="text/javascript">#}
-{#    let info = document.getElementById("info");#}
-{#    let change = document.getElementById("change");#}
-{#    let change_btn = document.getElementById("change_btn");#}
-{#    let photos = document.getElementById("photos");#}
-{#    let main = document.getElementById("main");#}
-{##}
-{#    change_btn.onclick = () => {#}
-        {#if (info.style.display === "block") {#}
-            {#info.style.display = "none";#}
-            {#change.style.display = "block";#}
-{#            change_btn.innerText = "Сохранить";#}
-        {#    return false;#}
-        {#ff#}
-{##}
-{#        return true;#}
-{#    };#}
-{##}
-{#    if (document.body.offsetWidth < 600) {#}
-{#        main.style.height = null;#}
-{#        main.style.minHeight = "calc(100% - 120px)";#}
-{#        document.body.style.boxShadow = "none";#}
-{#        avatar.style.height = null;#}
-{#        document.body.style.height = null;#}
-{#        change_btn.style.position = null;#}
-{#        $(".d-flex").attr("class", "");#}
-{#    }#}
-{##}
-{#</script>#}
+{% block body %}{% endblock %}
 
 <footer>
     <div class="footer-info clearfix">
@@ -143,6 +80,7 @@
         </div>
     </div>
 </footer>
+</body>
 
 {# модальное окно выхода #}
 <div class="modal fade" role="dialog" tabindex="-2" id="modal-2">
@@ -165,7 +103,5 @@
 </div>
 
 <script type="text/javascript" src="{{ url_for('static', filename='scripts/modal.js') }}"></script>
-
-</body>
-
+{% block script %}{% endblock %}
 </html>

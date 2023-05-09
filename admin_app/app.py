@@ -29,6 +29,106 @@ login_manager = LoginManager(app)
 # коллекция пользователей (для упрощения обращения)
 admins_db = db['administrators']
 exhibitions_db = db['exhibitions']
+excursions_db = db['excursions']
+
+
+@app.route('/excurs_change', methods=['GET', 'POST'])
+def excurs_change():
+    if current_user.is_authenticated:
+        if request.method == 'GET':
+            excursions = list(db['excursions'].find())
+            excursions_count = len(excursions)
+
+            block = []
+            output = []
+            ind = -1
+
+            for excursion in excursions:
+                ind += 1
+
+                if ind % 2 == 0:
+                    if ind != 0:
+                        output.append(block)
+
+                    block = [excursion]
+                else:
+                    block.append(excursion)
+
+            output.append(block)
+
+            return render_template(
+                "excurs_change.html",
+                ver=datetime.datetime.now().timestamp(),
+                is_authenticated=True,
+                excursions=output,
+                excursions_count=excursions_count
+            )
+    else:
+        return redirect(url_for('index'))
+
+
+def change_excurs_list():
+    print("Ok")
+
+
+@app.route('/delete_excursion', methods=['POST'])
+def delete_excursion():
+    delete_id = request.form['id']
+    excursions_db.delete_one({'_id': ObjectId(delete_id)})
+
+    return redirect(url_for('excurs_change'))
+
+
+@app.route('/add_excursion', methods=['GET', 'POST'])
+def add_excursion():
+    if request.method == 'GET':
+        return render_template('add_excursion.html',
+                               ver=datetime.datetime.now().timestamp(),
+                               is_authenticated=True,
+                               excursion=None)
+
+    photos_in = request.files.getlist('imgs')
+    photos = []
+
+    for photo in photos_in:
+        photo_str = str(base64.b64encode(photo.read()))
+        photos.append(photo_str[2:-1])
+
+    if 'stars' in request.form and request.form['stars']:
+        stars = int(request.form['stars'])
+    else:
+        stars = 0
+
+    if '_id' in request.form and request.form['_id']:
+        result = excursions_db.update_one({'_id': ObjectId(request.form['_id'])}, {'$set': {
+            'name': request.form['excursion_name'],
+            'stars': stars,
+            'photos': photos,
+            'about': request.form['about']
+        }})
+    else:
+        result = excursions_db.insert_one({
+            'name': request.form['excursion_name'],
+            'stars': int(request.form['stars']),
+            'photos': photos,
+            'about': request.form['about']
+        })
+
+    print(result)
+
+    return redirect('excurs_change')  # redirect(f'/exhibition?id={result.inserted_id}')
+
+
+@app.route('/modify_excursion', methods=['POST'])
+def modify_excursion():
+    if request.method == 'POST':
+        modify_id = request.form['id']
+        excursion = excursions_db.find_one({'_id': ObjectId(modify_id)})
+
+        return render_template('add_excursion.html',
+                               ver=datetime.datetime.now().timestamp(),
+                               is_authenticated=True,
+                               excursion=excursion)
 
 
 def change_exhib_list():
@@ -127,27 +227,6 @@ def creation():
                 exhibitions=output_exhibitions,
                 exhibitions_count=exhibitions_count
             )
-        # elif request.method == 'POST':
-        #     update = {}
-        #     # название выставки
-        #     if request.form['name']:
-        #         update['name'] = request.form['name']
-        # 
-        #     # рейтинг (1, 2 или 3 звезды)
-        #     # if request.form['stars']:
-        #     #     update['stars'] = request.form['stars']
-        # 
-        #     # поле "о чём" (про выставку)
-        #     if request.form['about']:
-        #         update['about'] = request.form['about']
-        #     # фотографии (несколько)
-        #     if request.files.get('photos'):
-        #         update['photos'] = str(base64.b64encode(request.files.get('photos').read()))[2:-1]
-        # 
-        #     if len(update.keys()) != 0:
-        #         exhibitions_db.update_one({'_id': current_user.id}, {'$set': update})
-        # 
-        #     return redirect(url_for('creation'))  # ИЗМЕНИТЬ??
     else:
         return redirect(url_for('index'))
 
@@ -254,5 +333,5 @@ def load_arts_from_dir(dir):
 
 # запуск сервера
 if __name__ == '__main__':
-    # load_arts_from_dir('C:/Users/geib2/OneDrive/Рабочий стол/arts')
+    # load_arts_from_dir('/Users/annatalova/Desktop/arts')
     app.run(host='0.0.0.0', port=5050, debug=True)

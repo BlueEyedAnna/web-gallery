@@ -8,20 +8,20 @@
 <div class="card"
      style="margin: 40px;background-color: #32423d;color: var(--bs-gray-200);border-radius: 30px;">
     <div class="card-body" style="width: 100%">
-        <h2 class="card-title">Выставка:</h2>
+        <h2 class="card-title">Экскурсия:</h2>
         <br>
-        <form action="/add_exhibition" method="post" enctype="multipart/form-data">
-            <input name="_id" type="text" {% if exhibition is not none %}value="{{ exhibition['_id'] }}"{% endif %}
+        <form action="/add_excursion" method="post" enctype="multipart/form-data">
+            <input name="_id" type="text" {% if excursion is not none %}value="{{ excursion['_id'] }}"{% endif %}
                    hidden>
 
-            <input class="form-control" type="text" name="exhibition_name" placeholder="Название выставки"
+            <input class="form-control" type="text" name="exhibition_name" placeholder="Название экскурсии"
                    autocomplete="on" required
                    style="margin-bottom: 16px;font-weight: bold;font-size: 20px;border-width: 2px;border-radius: 17px;"
-                   {% if exhibition is not none %}value="{{ exhibition['name'] }}"{% endif %}>
+                   {% if excursion is not none %}value="{{ excursion['name'] }}"{% endif %}>
 
-            <textarea class="form-control" name="about" placeholder="О выставке" autocomplete="on" required
-                      style="    margin-bottom: 16px;font-weight: bold;font-size: 20px;border-width: 2px;border-radius: 17px;height: 165px;max-height: 500px;min-height: 300px;">{% if exhibition is not none %}
-                {{ exhibition['about'] }}{% endif %}</textarea>
+            <textarea class="form-control" name="about" placeholder="Об экскурсии" autocomplete="on" required
+                      style="    margin-bottom: 16px;font-weight: bold;font-size: 20px;border-width: 2px;border-radius: 17px;height: 165px;max-height: 500px;min-height: 300px;">{% if excursion is not none %}
+                {{ excursion['about'] }}{% endif %}</textarea>
 
             <label>
                 Выберите фотографии:
@@ -64,7 +64,7 @@
                 </label>
             </div>
 
-            <input class="btn btn-success" type="submit" value="Добавить новую выставку"
+            <input class="btn btn-success" type="submit" value="Добавить новую экскурсию"
                    style="font-weight: bold;font-size: 20px;background: var(--bs-gray-200);color: var(--bs-gray-700);width: 100%;border-radius: 17px;"/>
         </form>
     </div>
