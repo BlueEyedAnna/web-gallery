@@ -5,7 +5,6 @@
 {% endblock %}
 
 {% block head %}
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/css/Animation-Cards-1.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/css/Animation-Cards.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/fonts/ionicons.min.css') }}">
     <link rel="stylesheet" type="text/css"
@@ -32,13 +31,14 @@
                             <button>Вручную</button>
                         </a></div>
                     <div class="right_button">
-                        <button disabled="disabled">ne trogat'</button>
+                        <button>Нужна помощь</button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
+    <h4>Экскурсии с экскурсоводом</h4>
     <a id="excursions_count" hidden>{{ excursions_count }}</a>
 
     {% for block in excursions %}

@@ -35,9 +35,9 @@
                 <ul class="menu">
                     <li><a href="/index">Главная</a></li>
                     <li><a href="/exhibitions">Выставки</a></li>
-                    {#                    <li><a href="/excursions">Экскурсии</a></li>#}
-                    <li><a href="/excursions">Экскурсии</a></li>
+
                     {% if is_authenticated %}
+                        <li><a href="/excursions">Экскурсии</a></li>
                         <li>
                             <button href="/login" data-bs-target="#modal-2" data-bs-toggle="modal" type="button"
                                     id="loginBtn">Выйти

@@ -69,7 +69,8 @@ nav {
     width: 190px;
     height: 190px;
     display: flex;
-    margin: auto;
+    /*margin: auto;*/
+    margin-right: 10px;
 }
 
 .footer-info {
@@ -131,11 +132,10 @@ nav {
 
 /* Temporary heading - to be changed to a dynamic heading once the modal is created */
 body h4 {
-    padding-left: 10px;
+    padding-left: 50px;
 }
 
 /*** CARD ***/
-
 /*** Adding shadows for card effect ***/
 #newCard {
     margin: 10px;
@@ -184,19 +184,30 @@ textarea {
     margin-left: 10px;
 }
 
+#outBtn {
+    color: #fff;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 14px;
+    outline: none;
+    border: 0;
+    background: transparent;
+    margin-top: 0;
+    padding-top: 0;
+}
+
 button {
     outline: none; /* Removes the blue glow from around textarea */
     font-size: 16px;
     font-weight: 600;
     color: rgb(255, 255, 255);
     padding: 8px 13px;
-    background-color: rgb(90, 172, 68);
     box-shadow: 0 2px 4px 0 rgba(1, 1, 1, 0.2);
     border: none;
     border-radius: 3px; /*** for rounded corners ***/
     margin-top: 10px;
     margin-left: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 #createNewCloseBtn {

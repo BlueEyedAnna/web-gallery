@@ -50,7 +50,7 @@ def exhibitions():
     for exhibition in exhibitions:
         ind += 1
 
-        if ind % 3 == 0:
+        if ind % 2 == 0:
             if ind != 0:
                 output_exhibitions.append(block_exhibitions)
 
@@ -93,7 +93,7 @@ def excursions():
     for _excursion in excursions_db:
         ind += 1
 
-        if ind % 3 == 0:
+        if ind % 2 == 0:
             if ind != 0:
                 output.append(block)
 

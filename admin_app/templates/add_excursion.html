@@ -6,7 +6,7 @@
 
 {% block body %}
 <div class="card"
-     style="margin: 40px;background-color: #32423d;color: var(--bs-gray-200);border-radius: 30px;">
+     style="margin: 40px;background-color: #45868A;color: var(--bs-gray-200);border-radius: 30px;">
     <div class="card-body" style="width: 100%">
         <h2 class="card-title">Экскурсия:</h2>
         <br>
@@ -14,7 +14,7 @@
             <input name="_id" type="text" {% if excursion is not none %}value="{{ excursion['_id'] }}"{% endif %}
                    hidden>
 
-            <input class="form-control" type="text" name="exhibition_name" placeholder="Название экскурсии"
+            <input class="form-control" type="text" name="excursion_name" placeholder="Название экскурсии"
                    autocomplete="on" required
                    style="margin-bottom: 16px;font-weight: bold;font-size: 20px;border-width: 2px;border-radius: 17px;"
                    {% if excursion is not none %}value="{{ excursion['name'] }}"{% endif %}>
@@ -64,7 +64,7 @@
                 </label>
             </div>
 
-            <input class="btn btn-success" type="submit" value="Добавить новую экскурсию"
+            <input class="btn btn-success" type="submit" value="Добавить экскурсию"
                    style="font-weight: bold;font-size: 20px;background: var(--bs-gray-200);color: var(--bs-gray-700);width: 100%;border-radius: 17px;"/>
         </form>
     </div>

@@ -53,8 +53,7 @@
                                 {{ excursion['about'] }}
                             </div>
 
-                            <div style="position:absolute;top: 5px;right: 5px;width: 190px; height: 190px;display: flex;margin: auto;"
-                                 id="photos">
+                            <div id="photos">
                                 {% for photo in excursion['photos'] %}
                                     {% set id = (((block_ind - 1) * 2 + excursion_ind - 1) * 100 + loop.index - 1)|string %}
                                     <img src="data:image/jpeg;base64, {{ photo }}"
@@ -70,7 +69,7 @@
                                 {{ excursion['name'] }}
                             </p>
 
-                            <button type="button" class="btn btn-outline-danger"
+                            <button type="button" class="btn btn-outline-danger" id="del-mod-button"
                                     style="position: absolute; right: 15px; bottom: 5px; border-radius: 13px;"
                                     onclick="document.forms['del{{ ((block_ind - 1) * 2 + excursion_ind - 1) }}'].submit();">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -81,7 +80,7 @@
                                 Удалить
                             </button>
 
-                            <button type="button" class="btn btn-outline-primary"
+                            <button type="button" class="btn btn-outline-primary" id="del-mod-button"
                                     style="position: absolute; right: 135px; bottom: 5px; border-radius: 13px;"
                                     onclick="document.forms['mod{{ ((block_ind - 1) * 2 + excursion_ind - 1) }}'].submit();">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"

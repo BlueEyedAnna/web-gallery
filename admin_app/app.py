@@ -6,7 +6,6 @@ from bson.objectid import ObjectId
 from flask_restful import Resource
 from flask import redirect, render_template, request, url_for
 from flask_login import LoginManager, current_user, login_user, logout_user, UserMixin
-from werkzeug.security import check_password_hash, generate_password_hash
 
 from admin_app import app, db, api
 
