@@ -4,8 +4,8 @@
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-body{
-     background-color: #041e1f;
+body {
+    background-color: #041e1f;
 }
 
 /*bar*/
@@ -89,7 +89,7 @@ nav {
 
 /*содержимое: фильтрация и др*/
 
-.filter_body{
+.filter_body {
     background-color: #021314;
 }
 
@@ -113,7 +113,7 @@ nav {
     display: none;
 }
 
-#DOHUYA {
+#alot {
     display: none;
 }
 
@@ -188,16 +188,8 @@ nav {
     background-color: #021314;
 }
 
-#photos {
-    padding: 5px 5px 5px 5px;
-    height: 100%;
-    width: 100%;
-    display: flex;
-    margin: auto;
-    overflow: hidden;
-}
 
-.card-header {
-    border-radius: 30px;
-    background: rgba(0, 0, 0, .9);
-}
+
+
+
+

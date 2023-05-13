@@ -8,7 +8,8 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css"
           href="{{ url_for('static', filename='css/filter.css') }}? version = {{ ver }}">
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/css/Animation-Cards_art.css') }}">
+    <link rel="stylesheet" type="text/css"
+          href="{{ url_for('static', filename='assets/css/Animation-Cards_art.css') }}">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='assets/fonts/ionicons.min.css') }}">
 
 {% endblock %}
@@ -523,7 +524,7 @@
                         </label>
                     </div>
                     <span id="MALO"></span>
-                    <span id="DOHUYA">
+                    <span id="alot">
                 <div class="choice">
                     <label sectionindex="0" itemindex="5" class="x7-a x7-a3">
                         <div class="x7-a0">
@@ -565,7 +566,7 @@
                     <script>
                         function YOUFunction() {
                             var MALO = document.getElementById("MALO");
-                            var MNOGOText = document.getElementById("DOHUYA");
+                            var MNOGOText = document.getElementById("alot");
                             var bUtnText = document.getElementById("MAYNKNOPKA");
 
                             if (MALO.style.display === "none") {
@@ -934,7 +935,8 @@
                         <label for="в20" sectionindex="0" itemindex="4" class="в20">
                             <div class="x7-a0">
                                 <div class="aa1-a o2e">
-                                    <input c="all" type="checkbox" name="в20" id="в20" class="vek" onclick="filterSelection('20')">
+                                    <input c="all" type="checkbox" name="в20" id="в20" class="vek"
+                                           onclick="filterSelection('20')">
                                     <span class="в20">
                                     <span>20 век</span>
                                 </span>
@@ -962,16 +964,19 @@
                         <input type="text" name="id" value="{{ painting['_id'] }}">
                     </form>
 
-                    <div class="col filtering" >
+                    <div class="col filtering">
                         <b style="display: none">{{ painting['artist'] }} {{ painting['year'] }} {{ painting['epoch'] }} {{ painting['genre'] }} {{ painting['materials'] }}</b>
                         <div class="card cards-shadown cards-hover aos-init aos-animate" data-aos=flip-left
                              data-aos-duration="950" style="border-radius: 30px;border: none; height: 500px">
 
-                            <div class="card-header"
-                                 onclick="document.forms['t{{ ((block_ind - 1) * 2 + art_ind - 1) }}'].submit();">
-                                <div id="photos">
-                                    <img src="data:image/jpeg;base64, {{ painting['image'] }}" alt="slide" id="{{ id }} ">
+                            <div class="card-header" onclick="document.forms['t{{ ((block_ind - 1) * 2 + art_ind - 1) }}'].submit();">
+                                <div class="img_part" id="photos">
+                                    <img src="data:image/jpeg;base64, {{ painting['image'] }}" alt="slide"
+                                         id="{{ id }} ">
                                 </div>
+{#                                <div class="about_part" id="description">#}
+{#                                    lalallala#}
+{#                                </div>#}
                             </div>
                             <div class="card-body">
                                 <p class="card-text cardbody-sub-text"

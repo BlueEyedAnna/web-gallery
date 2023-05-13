@@ -1,0 +1,70 @@
+html,
+body {
+    height: 100%;
+    font-size: 15px;
+}
+
+.swiper {
+    width: 900px;
+    height: 100%;
+}
+
+.swiper-slide {
+    text-align: center;
+    font-size: 18px;
+    background-color: aliceblue;
+    /*display: flex;*/
+    justify-content: center;
+    align-items: center;
+}
+
+.swiper-slide img {
+    width: 55%;
+    object-fit: cover;
+}
+
+.img_block {
+    height: 80%;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.swiper-button-next, .swiper-rtl .swiper-button-prev {
+    right: 140px !important;
+    left: auto;
+}
+
+.swiper-button-prev, .swiper-rtl .swiper-button-next {
+    left: 140px !important;
+    right: auto;
+}
+
+/*RATING*/
+.rating {
+    display: inline-flex;
+    flex-direction: row-reverse;
+    height: 20%;
+}
+
+.rating__item {
+    font-size: 100px;
+    color: #dcdcdc;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.rating__item:hover,
+.rating__item:hover ~ .rating__item {
+    color: #989898;
+}
+
+.rating[data-total-value="1"] .rating__item:nth-child(n + 5),
+.rating[data-total-value="2"] .rating__item:nth-child(n + 4),
+.rating[data-total-value="3"] .rating__item:nth-child(n + 3),
+.rating[data-total-value="4"] .rating__item:nth-child(n + 2),
+.rating[data-total-value="5"] .rating__item:nth-child(n + 1) {
+    color: #008080;
+}
+

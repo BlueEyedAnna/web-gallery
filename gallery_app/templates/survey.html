@@ -1,0 +1,67 @@
+{% extends "template.html" %}
+
+{% block title %}
+    Опрос
+{% endblock %}
+
+{% block head %}
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    {#    <script type="text/javascript"#}
+    {#            src="{{ url_for('static', filename='assets/js/swiper-bundle_esm_browser_min.js') }}"></script>#}
+    {#    <script type="text/javascript" src="{{ url_for('static', filename='assets/js/swiper-bundle_min.js') }}"></script>#}
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+    <link rel="stylesheet" type="text/css"
+          href="{{ url_for('static', filename='css/anoth_page.css') }}? version = {{ ver }}">
+    <link rel="stylesheet" type="text/css"
+          href="{{ url_for('static', filename='css/slider.css') }}? version = {{ ver }}">
+
+{% endblock %}
+
+{% block body %}
+    <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+            {% for painting in arts %}
+                {% set art_ind = loop.index %}
+                <div class="swiper-slide">
+                    <div class="img_block">
+                        <img src="data:image/jpeg;base64, {{ painting['image'] }}" alt="slide" id="{{ id }} ">
+                    </div>
+
+                    <div class="rating" data-total-value="0">
+                        <div class="rating__item" data-item-value="5">✭</div>
+                        <div class="rating__item" data-item-value="4">✭</div>
+                        <div class="rating__item" data-item-value="3">✭</div>
+                        <div class="rating__item" data-item-value="2">✭</div>
+                        <div class="rating__item" data-item-value="1">✭</div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <div class="swiper-pagination"></div>
+    </div>
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+
+    <script>
+        var swiper = new Swiper(".mySwiper", {
+            spaceBetween: 30,
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            pagination: {
+                el: ".swiper-pagination",
+            },
+            mousewheel: true,
+            keyboard: true,
+        });
+    </script>
+
+    <script type="text/javascript" src="{{ url_for('static', filename='scripts/survey_stars.js') }}"></script>
+{% endblock %}
+

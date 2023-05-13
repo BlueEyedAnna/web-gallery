@@ -7,6 +7,7 @@ from flask_restful import Resource
 from flask import redirect, render_template, request, url_for
 from flask_login import LoginManager, current_user, login_user, logout_user, UserMixin
 from werkzeug.security import check_password_hash, generate_password_hash
+from recommendation import make_excursion
 
 from gallery_app import app, db, api
 
@@ -35,6 +36,50 @@ login_manager = LoginManager(app)
 # коллекция пользователей (для упрощения обращения)
 users = db['users']
 art_db = db['art']
+
+
+@app.route("/excursion_slider")
+def excursion_slider():
+    excursion = make_excursion()
+
+    arts = []
+    for painting in excursion:
+        arts.append(art_db.find_one({'_id': str(painting)}))
+
+    arts_count = len(arts)
+
+    return render_template(
+        "excursion_slider.html",
+        ver=datetime.datetime.now().timestamp(),
+        is_authenticated=current_user.is_authenticated,
+        arts=arts,
+        arts_count=arts_count,
+    )
+
+
+def read_file(filename=None):
+    if filename:
+        with open(filename, 'r', encoding='utf-8') as f:
+            text = f.readlines()
+        return text
+
+
+@app.route("/survey")
+def survey():  # опрос
+    text = read_file('files/arts.csv')
+    arts = []
+    for i in range(1, len(text)):
+        splited = text[i].split(',')
+        art_id = splited[0]
+        arts.append(art_db.find_one({'_id': art_id}))
+
+    return render_template(
+        "survey.html",
+        ver=datetime.datetime.now().timestamp(),
+        is_authenticated=current_user.is_authenticated,
+        arts=arts,
+        arts_count=len(arts),
+    )
 
 
 @app.route('/exhibitions', methods=['GET'])

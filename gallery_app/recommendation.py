@@ -33,7 +33,7 @@ def make_excursion():  # => пользователь прошел опрос п�
 
     user_ratings = dict.fromkeys([5.0, 4.0, 3.0, 2.0, 1.0], [])
 
-    text = read_file('user_ratings.csv')
+    text = read_file('files/user_ratings.csv')
     for i in range(1, len(text)):
         # Распределение id картин по поставленным за них баллам
         splited = text[i].split(',')
@@ -43,14 +43,14 @@ def make_excursion():  # => пользователь прошел опрос п�
     text[1] = '\n' + text[1]
     # write_to_file('ratings.csv', text[1:])
 
-    arts = pd.read_csv('arts.csv')  # Список 20 картин
+    arts = pd.read_csv('files/arts.csv')  # Список 20 картин
     # Удаление ненужных столбцов
     arts.drop(['artist'], axis=1, inplace=True)
     arts.drop(['epoch'], axis=1, inplace=True)
     arts.drop(['genre'], axis=1, inplace=True)
 
-    ratings = pd.read_csv('ratings.csv')  # Общий рейтинг для 20 картин
-    all_arts = pd.read_csv('arts_all.csv')  # Список всех картин
+    ratings = pd.read_csv('files/ratings.csv')  # Общий рейтинг для 20 картин
+    all_arts = pd.read_csv('files/arts_all.csv')  # Список всех картин
 
     excursion = []
     search = Similar(arts, ratings)
