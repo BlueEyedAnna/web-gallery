@@ -1,7 +1,9 @@
 import base64
 import datetime
+import json
 import random
 
+import pandas
 from bson.objectid import ObjectId
 from flask_restful import Resource
 from flask import redirect, render_template, request, url_for
@@ -40,7 +42,15 @@ art_db = db['art']
 
 @app.route("/excursion_slider")
 def excursion_slider():
-    excursion = make_excursion()
+    user_ratings = json.loads(request.args['user_ratings'])
+    rating_records = db['ratings'].find()
+    df = pandas.DataFrame()
+
+    for r in rating_records:
+        ratings = pandas.DataFrame.from_dict(json.loads(r['value']))
+        df = df.append(ratings, ignore_index=True)
+
+    excursion = make_excursion(user_ratings, df)
 
     arts = []
     for painting in excursion:
@@ -57,6 +67,21 @@ def excursion_slider():
     )
 
 
+def lol():
+    import pandas
+
+    db['ratings'].delete_many({})
+
+    ratings = pandas.read_csv('D:/source/Python/web-gallery/gallery_app/files/ratings.csv')
+
+    for i in range(1, 22):
+        df = ratings[ratings['userId'] == i]
+        dumped = json.dumps(df.to_dict())
+        user_id = i
+
+        db['ratings'].insert_one({'user_id': user_id, 'value': dumped})
+
+
 def read_file(filename=None):
     if filename:
         with open(filename, 'r', encoding='utf-8') as f:
@@ -64,22 +89,41 @@ def read_file(filename=None):
         return text
 
 
-@app.route("/survey")
+@app.route("/survey", methods=['GET', 'POST'])
 def survey():  # опрос
-    text = read_file('files/arts.csv')
-    arts = []
-    for i in range(1, len(text)):
-        splited = text[i].split(',')
-        art_id = splited[0]
-        arts.append(art_db.find_one({'_id': art_id}))
+    if request.method == 'GET':
+        text = read_file('files/arts.csv')
+        arts = []
+        for i in range(1, len(text)):
+            splited = text[i].split(',')
+            art_id = splited[0]
+            arts.append(art_db.find_one({'_id': art_id}))
 
-    return render_template(
-        "survey.html",
-        ver=datetime.datetime.now().timestamp(),
-        is_authenticated=current_user.is_authenticated,
-        arts=arts,
-        arts_count=len(arts),
-    )
+        return render_template(
+            "survey.html",
+            ver=datetime.datetime.now().timestamp(),
+            is_authenticated=current_user.is_authenticated,
+            arts=arts,
+            arts_count=len(arts),
+        )
+    else:
+        user_ratings = {}
+        for i in range(1, 6):
+            user_ratings[float(i)] = []
+
+        for_df = []
+        max_user_id = int(sorted(db['ratings'].find({}), key=lambda x: int(x['user_id']), reverse=True)[0]['user_id'])
+
+        for key, value in request.form.items():
+            art_id = int(key.split()[1])
+            for_df.append({'userId': max_user_id + 1, 'artId': art_id, 'rating': float(value)})
+            user_ratings[float(value)].append(art_id)
+
+        df = pandas.DataFrame.from_records(for_df)
+
+        db['ratings'].insert_one({'user_id': max_user_id + 1, 'value': json.dumps(df.to_dict())})
+
+    return redirect(url_for('excursion_slider', user_ratings=json.dumps(user_ratings)))
 
 
 @app.route('/exhibitions', methods=['GET'])
@@ -367,4 +411,5 @@ api.add_resource(CheckLogin, "/check_login/<string:login>", "/check_login/")
 
 # запуск сервера
 if __name__ == '__main__':
+    # lol()
     app.run(host='0.0.0.0', port=5050, debug=True)

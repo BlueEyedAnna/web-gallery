@@ -27,20 +27,20 @@ def get_another(art_id, sign: str, all_arts):
         return int(another_arts.pop())
 
 
-def make_excursion():  # => пользователь прошел опрос по оценке картин
-    global NUM_OF_RATINGS
-    NUM_OF_RATINGS += 1
+def make_excursion(user_ratings, ratings):  # => пользователь прошел опрос по оценке картин
+    # global NUM_OF_RATINGS
+    # NUM_OF_RATINGS += 1
 
-    user_ratings = dict.fromkeys([5.0, 4.0, 3.0, 2.0, 1.0], [])
+    # user_ratings = dict.fromkeys([5.0, 4.0, 3.0, 2.0, 1.0], [])
 
-    text = read_file('files/user_ratings.csv')
-    for i in range(1, len(text)):
-        # Распределение id картин по поставленным за них баллам
-        splited = text[i].split(',')
-        user_ratings[float(splited[1])].append(splited[0])
-        # Добавление номера пользователя в строку
-        text[i] = f'{NUM_OF_RATINGS},' + text[i]
-    text[1] = '\n' + text[1]
+    # text = read_file('files/user_ratings.csv')
+    # for i in range(1, len(text)):
+    #     # Распределение id картин по поставленным за них баллам
+    #     splited = text[i].split(',')
+    #     user_ratings[float(splited[1])].append(splited[0])
+    #     # Добавление номера пользователя в строку
+    #     text[i] = f'{NUM_OF_RATINGS},' + text[i]
+    # text[1] = '\n' + text[1]
     # write_to_file('ratings.csv', text[1:])
 
     arts = pd.read_csv('files/arts.csv')  # Список 20 картин
@@ -49,7 +49,7 @@ def make_excursion():  # => пользователь прошел опрос п�
     arts.drop(['epoch'], axis=1, inplace=True)
     arts.drop(['genre'], axis=1, inplace=True)
 
-    ratings = pd.read_csv('files/ratings.csv')  # Общий рейтинг для 20 картин
+    # ratings2 = pd.read_csv('files/ratings.csv')  # Общий рейтинг для 20 картин
     all_arts = pd.read_csv('files/arts_all.csv')  # Список всех картин
 
     excursion = []

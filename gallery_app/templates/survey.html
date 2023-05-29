@@ -23,29 +23,52 @@
 {% endblock %}
 
 {% block body %}
-    <div class="swiper mySwiper">
-        <div class="swiper-wrapper">
-            {% for painting in arts %}
-                {% set art_ind = loop.index %}
-                <div class="swiper-slide">
-                    <div class="img_block">
-                        <img src="data:image/jpeg;base64, {{ painting['image'] }}" alt="slide" id="{{ id }} ">
-                    </div>
+    <form method="post" action="/survey" name="get_survey">
+        <div class="swiper mySwiper">
+            <div class="swiper-wrapper">
+                {% for painting in arts %}
+                    {% set art_ind = loop.index %}
+                    <div class="swiper-slide">
+                        <div class="img_block">
+                            <img src="data:image/jpeg;base64, {{ painting['image'] }}" alt="slide" id="{{ painting['_id'] }} ">
+                        </div>
 
-                    <div class="rating" data-total-value="0">
-                        <div class="rating__item" data-item-value="5">✭</div>
-                        <div class="rating__item" data-item-value="4">✭</div>
-                        <div class="rating__item" data-item-value="3">✭</div>
-                        <div class="rating__item" data-item-value="2">✭</div>
-                        <div class="rating__item" data-item-value="1">✭</div>
+                        <div class="rating" data-total-value="0">
+                            <label class="rating__item" data-item-value="5">
+                                <input value="5" name="{{ 'stars_id ' + painting['_id'] }}" type="radio" hidden/>
+                                <span>★</span>
+                            </label>
+                            <label class="rating__item" data-item-value="4">
+                                <input value="4" name="{{ 'stars_id ' + painting['_id'] }}" type="radio" hidden/>
+                                <span>★</span>
+                            </label>
+                            <label class="rating__item" data-item-value="3">
+                                <input value="3" name="{{ 'stars_id ' + painting['_id'] }}" type="radio" hidden/>
+                                <span>★</span>
+                            </label>
+                            <label class="rating__item" data-item-value="2">
+                                <input value="2" name="{{ 'stars_id ' + painting['_id'] }}" type="radio" hidden/>
+                                <span>★</span>
+                            </label>
+                            <label class="rating__item" data-item-value="1">
+                                <input value="1" name="{{ 'stars_id ' + painting['_id'] }}" type="radio" checked hidden/>
+                                <span>★</span>
+                            </label>
+{#                            <input value="0" name="{{ 'stars_id ' + painting['_id'] }}" type="radio" checked hidden/>#}
+                        </div>
                     </div>
+                {% endfor %}
+
+                <div class="swiper-slide">
+                    <input class="btn btn-success" type="submit" value="Отправить"
+                       style="font-weight: bold;font-size: 40px;background: var(--bs-gray-200);color: var(--bs-gray-700);width: 100%;border-radius: 17px;"/>
                 </div>
-            {% endfor %}
+            </div>
+            <div class="swiper-pagination"></div>
         </div>
-        <div class="swiper-pagination"></div>
-    </div>
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
+    </form>
 
     <script>
         var swiper = new Swiper(".mySwiper", {

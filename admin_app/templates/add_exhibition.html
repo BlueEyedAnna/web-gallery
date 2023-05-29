@@ -5,68 +5,68 @@
 {% endblock %}
 
 {% block body %}
-<div class="card"
-     style="margin: 40px;background-color: #45868A;color: var(--bs-gray-200);border-radius: 30px;">
-    <div class="card-body" style="width: 100%">
-        <h2 class="card-title">Выставка:</h2>
-        <br>
-        <form action="/add_exhibition" method="post" enctype="multipart/form-data">
-            <input name="_id" type="text" {% if exhibition is not none %}value="{{ exhibition['_id'] }}"{% endif %}
-                   hidden>
-
-            <input class="form-control" type="text" name="exhibition_name" placeholder="Название выставки"
-                   autocomplete="on" required
-                   style="margin-bottom: 16px;font-weight: bold;font-size: 20px;border-width: 2px;border-radius: 17px;"
-                   {% if exhibition is not none %}value="{{ exhibition['name'] }}"{% endif %}>
-
-            <textarea class="form-control" name="about" placeholder="О выставке" autocomplete="on" required
-                      style="    margin-bottom: 16px;font-weight: bold;font-size: 20px;border-width: 2px;border-radius: 17px;height: 165px;max-height: 500px;min-height: 300px;">{% if exhibition is not none %}
-                {{ exhibition['about'] }}{% endif %}</textarea>
-
-            <label>
-                Выберите фотографии:
-                <input class="form-control" type="file" name="imgs" accept="image/jpeg" multiple required
-                       style="margin-bottom: 16px;font-weight: bold;font-size: 20px;border-width: 2px;border-radius: 17px;">
-            </label>
-
+    <div class="card"
+         style="margin: 40px;background-color: #45868A;color: var(--bs-gray-200);border-radius: 30px;">
+        <div class="card-body" style="width: 100%">
+            <h2 class="card-title">Выставка:</h2>
             <br>
+            <form action="/add_exhibition" method="post" enctype="multipart/form-data">
+                <input name="_id" type="text" {% if exhibition is not none %}value="{{ exhibition['_id'] }}"{% endif %}
+                       hidden>
 
-            <div class="rating">
-                <label>
-                    <input type="radio" name="stars" value="1"/>
-                    <span class="icon">★</span>
-                </label>
-                <label>
-                    <input type="radio" name="stars" value="2"/>
-                    <span class="icon">★</span>
-                    <span class="icon">★</span>
-                </label>
-                <label>
-                    <input type="radio" name="stars" value="3"/>
-                    <span class="icon">★</span>
-                    <span class="icon">★</span>
-                    <span class="icon">★</span>
-                </label>
-                <label>
-                    <input type="radio" name="stars" value="4"/>
-                    <span class="icon">★</span>
-                    <span class="icon">★</span>
-                    <span class="icon">★</span>
-                    <span class="icon">★</span>
-                </label>
-                <label>
-                    <input type="radio" name="stars" value="5"/>
-                    <span class="icon">★</span>
-                    <span class="icon">★</span>
-                    <span class="icon">★</span>
-                    <span class="icon">★</span>
-                    <span class="icon">★</span>
-                </label>
-            </div>
+                <input class="form-control" type="text" name="exhibition_name" placeholder="Название выставки"
+                       autocomplete="on" required
+                       style="margin-bottom: 16px;font-weight: bold;font-size: 20px;border-width: 2px;border-radius: 17px;"
+                       {% if exhibition is not none %}value="{{ exhibition['name'] }}"{% endif %}>
 
-            <input class="btn btn-success" type="submit" value="Добавить выставку"
-                   style="font-weight: bold;font-size: 20px;background: var(--bs-gray-200);color: var(--bs-gray-700);width: 100%;border-radius: 17px;"/>
-        </form>
+                <textarea class="form-control" name="about" placeholder="О выставке" autocomplete="on" required
+                          style="    margin-bottom: 16px;font-weight: bold;font-size: 20px;border-width: 2px;border-radius: 17px;height: 165px;max-height: 500px;min-height: 300px;">{% if exhibition is not none %}
+                    {{ exhibition['about'] }}{% endif %}</textarea>
+
+                <label>
+                    Выберите фотографии:
+                    <input class="form-control" type="file" name="imgs" accept="image/jpeg" multiple required
+                           style="margin-bottom: 16px;font-weight: bold;font-size: 20px;border-width: 2px;border-radius: 17px;">
+                </label>
+
+                <br>
+
+                <div class="rating">
+                    <label>
+                        <input type="radio" name="stars" value="1"/>
+                        <span class="icon">★</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="stars" value="2"/>
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="stars" value="3"/>
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="stars" value="4"/>
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                    </label>
+                    <label>
+                        <input type="radio" name="stars" value="5"/>
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                        <span class="icon">★</span>
+                    </label>
+                </div>
+
+                <input class="btn btn-success" type="submit" value="Добавить выставку"
+                       style="font-weight: bold;font-size: 20px;background: var(--bs-gray-200);color: var(--bs-gray-700);width: 100%;border-radius: 17px;"/>
+            </form>
+        </div>
     </div>
-</div>
 {% endblock %}
